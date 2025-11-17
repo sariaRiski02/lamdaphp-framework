@@ -3,6 +3,8 @@
 
 namespace Lamda\Core\Routing;
 
+use Lamda\Core\Http\Request;
+use Lamda\Core\Http\Response;
 use Lamda\Core\Routing\Route;
 
 class Router{
@@ -42,13 +44,15 @@ class Router{
             return Response::make('404 Not Found', 404);
         }
 
+        $action = $route->getAction();
+
         // closure /callable
         if(is_callable($action) && !is_array($action)){
             $result = call_user_func_array($action, $params);
 
         // string "Controller@Method"
         }elseif(is_string($action)){
-            [$controllerName, $methodName] = explode($action);
+            [$controllerName, $methodName] = explode('@',$action);
 
             $controllerClass = 'App\\Controllers\\' . $controllerName;
 
@@ -121,4 +125,4 @@ class Router{
         }
         return null;
     }
-}
+}                           
