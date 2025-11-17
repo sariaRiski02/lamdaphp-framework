@@ -1,0 +1,17 @@
+{
+    "name": "lamda/framework",
+    "description": "LamdaPHP lightWeight modular PHP framework with realtime SSE.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lamda\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rizky saria"
+        }
+    ],
+    "require": {}
+}
