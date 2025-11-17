@@ -3,19 +3,19 @@
 namespace Lamda\Core\Routing;
 
 class Route{
-    
-    protected array $method;
+
+    protected array $methods;
     protected string $pattern;
     protected $action; // string | arrray | callable
 
-    public function __construct(array $method, string $pattern, $action){
-        $this->method = $method;
+    public function __construct(array $methods, string $pattern, $action){
+        $this->methods = $methods;
         $this->pattern = $pattern;
         $this->action = $action;
     }
 
-    public function getMethod(): array{
-        return $this->method;
+    public function getMethods(): array{
+        return $this->methods;
     }
 
 
