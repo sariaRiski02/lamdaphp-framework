@@ -67,6 +67,7 @@ class Response
     }
 
     /** ============================= Helper Function =============================== */
+    
     // Getter, Setter and Helper funcition
 
     public function getContent(): int{
