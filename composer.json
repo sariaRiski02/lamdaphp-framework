@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Lamda\\": "src/"
+            "Lamda\\": "src/",
+            "App\\": "app/"
         }
     },
     "authors": [
@@ -13,5 +14,7 @@
             "name": "Rizky saria"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "symfony/var-dumper": "^7.3"
+    }
 }

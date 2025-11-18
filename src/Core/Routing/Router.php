@@ -26,6 +26,7 @@ class Router{
     protected function addRoute(array $method, string $uri, $action): Route
     {
         $uri = '/' . ltrim($uri, '/'); // buat uri lebih konsisten
+        
 
         $route = new Route($method, $uri, $action);
         $this->routes[] = $route;
@@ -39,17 +40,21 @@ class Router{
 
         [$route, $params] = $this->matchRoute($method, $path) ?? [null, []];
 
+        
 
         if(!$route){
             return Response::make('404 Not Found', 404);
         }
 
         $action = $route->getAction();
+        
 
         // closure /callable
         if(is_callable($action) && !is_array($action)){
+            
             $result = call_user_func_array($action, $params);
 
+            
         // string "Controller@Method"
         }elseif(is_string($action)){
             [$controllerName, $methodName] = explode('@',$action);
@@ -86,13 +91,18 @@ class Router{
             return Response::make('Invalid route action', 500);
         }
 
+        // var_dump($result);
         // jika controller sudah mengembalikan response
         if($result instanceof Response){
             return $result;
         }
-
         // kalau cuma string / scalar -> bungkus jadi response
-        return Response::make((string) $result);
+        
+        
+
+        
+        return Response::make($result);
+
     }
 
     /**
