@@ -7,7 +7,6 @@ use Lamda\Support\Facades\Route;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
 // 1. Buat Request
 $request = Request::capture();
 

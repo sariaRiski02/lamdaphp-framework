@@ -7,3 +7,5 @@ use App\Controllers\HomeController;
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/ping', fn()=>"pong");
 Route::get('/hello/{name}', [HomeController::class, 'hello']);
+
+Route::get('/test', fn()=> "test successful");

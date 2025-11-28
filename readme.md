@@ -122,7 +122,7 @@ If you cloned this repo because you're also building your own framework:
 ### 🫶 Credits
 
 Developed by **Muhammat Rizky Saria**
-A student who loves PHP too much and decided to turn a fun project into a Undergraduate Final Project.
+A student who loves PHP too much, Love Design Pattern and decided to turn a fun project into a Undergraduate Final Project.
 
 ```
 
