@@ -11,6 +11,7 @@ class Request
     {
         $this->method = strtoupper($method);
         $this->path = '/' . ltrim($path, '/');
+        
 
     }
 
@@ -18,7 +19,7 @@ class Request
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
 
-        // buang query string
+        // remove query string
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
 
         return new self($method, $path);

@@ -1,9 +1,12 @@
 <?php
 
 use Lamda\Core\Http\Request;
-use Lamda\Core\Http\Response;
 use Lamda\Core\Routing\Router;
-use Lamda\Support\Facades\Route;
+use Lamda\Core\Support\Facades\Route;
+
+
+define('BASE_PATH', dirname(__DIR__));
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -14,22 +17,13 @@ $request = Request::capture();
 $router = new Router();
 
 // 3. Pasang router ke Facade
-// hubungkan facade ke isntance router sebelum memuat routes
 Route::setRouter($router);
 
-// 4. muat definisi route
+// 4. Muat definisi route
 require __DIR__ . '/../routes/web.php';
-
 
 // 5. Dispatch request
 $response = $router->dispatch($request);
 
-
-
-
-// 6. Krim ke browser
+// 6. Kirim ke browser
 $response->send();
-
-
-
-

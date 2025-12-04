@@ -3,7 +3,7 @@
 
 namespace Lamda\Core\View;
 
-use Exception;
+
 use RuntimeException;
 
 class LamdaViewEngine
@@ -15,6 +15,7 @@ class LamdaViewEngine
     {
         $this->viewsPath = $viewsPath;
         $this->cachePath = $cachePath;
+        
 
         if(!is_dir($this->viewsPath)){
             throw new RuntimeException("Views path does not exist: {$this->viewsPath}");
@@ -30,11 +31,11 @@ class LamdaViewEngine
      * 
      * Render view .lamda.php menjadi HTML string
      */
-    public function render(string $view, array $data = []): string
+    public function render(string $view, array $rawsData = []): string
     {
         
         $compiledFile = $this->compile($view);
-        extract($data, EXTR_SKIP);
+        extract($rawsData, EXTR_SKIP);
         ob_start();
         include $compiledFile;
         return ob_get_clean();
@@ -48,13 +49,15 @@ class LamdaViewEngine
 
     protected function compile(string $view):string {
         // support nested folder: 'home/index', 'admin/users/index' ...
+        $view = str_replace('.','/',$view);
         $viewFile = $this->viewsPath . '/' . $view . '.lamda.php';
         if(!file_exists($viewFile)){
             throw new RuntimeException("View Not Found: {$viewFile}");
         }
 
         // make miror parsing template
-        $compiledFile = $this->cachePath . '/' . $view . '.php';
+        $compiledFile = $this->cachePath . '/' . $view . '.lamda.php';
+        
 
         // make sure directory cache already exists
         $compiledDir = dirname($compiledFile);
@@ -90,7 +93,7 @@ class LamdaViewEngine
 
         // {{ $var }} -> escaped
         $content = preg_replace_callback(
-            '/\{\s*(.+?)\s*\}\}/s',
+            '/\{\{\s*(.+?)\s*\}\}/s',
             fn($m) => '<?=  htmlspecialchars('.$m[1]. ', ENT_QUOTES, \'UTF-8\') ?>',
             $content
         );
@@ -125,14 +128,15 @@ class LamdaViewEngine
 
         // @endif
         $content = preg_replace(
-            '/@endif/s*$/m',
+            '/@endif\s*$/m',
             '<?php endif; ?>',
             $content
         );
 
+        //  @foreach (...)
         $content = preg_replace(
-            '/@endforeach\s*$/m',
-            '<?php endforeach; ?>',
+            '/@foreach\s*\((.+?)\)\s*$/m',
+            '<?php foreach ($1): ?>',
             $content
         );
 

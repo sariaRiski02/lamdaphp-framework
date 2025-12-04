@@ -59,22 +59,25 @@ class Router{
         }elseif(is_string($action)){
             [$controllerName, $methodName] = explode('@',$action);
 
-            $controllerClass = 'App\\Controllers\\' . $controllerName;
+            $controllerClass = 'App\\Http\\Controllers\\' . $controllerName;
+            
+            
 
             if(!class_exists($controllerClass)){
-                return Response::make('controller not Found', 500);
+                return Response::make('controller: '. $controllerClass .' not Found', 500);
             }
 
             $controller = new $controllerClass();
             
             if(!method_exists($controller, $methodName)){
-                return Response::make('method not Found', 500);
+                return Response::make("Method $methodName in $controllerName not found", 500);
             }
 
             $result = call_user_func_array([$controller, $methodName], $params);
         }elseif(is_array($action) && count($action) == 2){
 
             [$controllerClass, $methodName] = $action;
+            
 
             if(!class_exists($controllerClass)){
                 return Response::make('controller not Found', 500);

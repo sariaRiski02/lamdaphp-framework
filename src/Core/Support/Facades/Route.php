@@ -1,6 +1,6 @@
 <?php
 
-namespace Lamda\Support\Facades;
+namespace Lamda\Core\Support\Facades;
 
 use Lamda\Core\Routing\Router;
 use RuntimeException;

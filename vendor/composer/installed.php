@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'lamda/framework',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'cab753377cac6047f0bd556af58eadee45b6ca43',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'ec741a6704483d8141bf87f923d73aaac1a5fb2a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'lamda/framework' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'cab753377cac6047f0bd556af58eadee45b6ca43',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ec741a6704483d8141bf87f923d73aaac1a5fb2a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -38,9 +38,9 @@
             'dev_requirement' => true,
         ),
         'symfony/var-dumper' => array(
-            'pretty_version' => 'v7.3.5',
-            'version' => '7.3.5.0',
-            'reference' => '476c4ae17f43a9a36650c69879dcf5b1e6ae724d',
+            'pretty_version' => 'v7.4.0',
+            'version' => '7.4.0.0',
+            'reference' => '41fd6c4ae28c38b294b42af6db61446594a0dece',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),
