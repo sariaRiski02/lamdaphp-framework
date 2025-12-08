@@ -11,8 +11,6 @@ class Request
     {
         $this->method = strtoupper($method);
         $this->path = '/' . ltrim($path, '/');
-        
-
     }
 
     public static function capture(): self{
