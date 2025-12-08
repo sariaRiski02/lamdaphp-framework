@@ -41,16 +41,13 @@ class Database
         }
     }
 
-
-    // Singleton helper (opsional)
-
+    // Singleton helper
     public static function getInstance(array $config = []):self{
         if (static::$instance === null){
             static::$instance = new static($config);
         }
         return static::$instance;
     }
-
 
     public function getPdo(): PDO
     {
@@ -63,7 +60,6 @@ class Database
         $stmt->execute($params);
         return $stmt->fetch();
     }
-
 
     public function fetchAll(string $sql, array $params = []){
         $stmt = $this->pdo->prepare($sql);

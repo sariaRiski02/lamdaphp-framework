@@ -8,10 +8,9 @@ use Lamda\Core\Database\Database;
 class HomeController extends Controller{
 
     public function index(){
-        
         $db = Database::getInstance();
         $stmt = $db->getPdo()
-            ->prepare("SELECT * FROM todos");
+            ->prepare("SELECT * FROM todos ORDER BY id DESC");
         $stmt->execute();
         $todos = $stmt->fetchAll();
 
@@ -25,7 +24,6 @@ class HomeController extends Controller{
         $stmt->execute([
             'name' => $_POST['todo'] ?? ''
         ]);
-
         return $this->redirect('/');
     }
 
