@@ -13,15 +13,27 @@
         <button type="submit">Add</button>
     </form>
 
-    <ul>
-        @foreach($todos as $todo)
-        <li>{{ $todo['name'] }} 
-            <!-- <a href="/checked/{{ $todo['id'] }}">selesai</a> | -->
-            <a href="/update/{{ $todo['id'] }}">update</a> |
-            <a href="/delete/{{ $todo['id'] }}">Delete</a> 
+    <table border="1" cellpadding="10" cellspacing="0" style="margin-top:20px;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Todo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($todos as $index => $todo)
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $todo['name'] }}</td>
+                <td>
+                    <a href="/update/{{ $todo['id'] }}">Update</a> |
+                    <a href="/delete/{{ $todo['id'] }}">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-        </li>
-        @endforeach
-    </ul>
 </body>
 </html>

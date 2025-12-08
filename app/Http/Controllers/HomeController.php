@@ -26,7 +26,7 @@ class HomeController extends Controller{
             'name' => $_POST['todo'] ?? ''
         ]);
 
-        return "Todo added";
+        return $this->redirect('/');
     }
 
     public function delete($id){
@@ -37,7 +37,7 @@ class HomeController extends Controller{
             'id' => $id
         ]);
 
-        return "Todo deleted!";
+        return $this->redirect('/');
     }
 
     public function updatePage($id){
@@ -57,6 +57,10 @@ class HomeController extends Controller{
             'name' => $dataUpdate,
             'id' => $id
         ]);
+
+        return $this->redirect('/');
     }
+
+
 }
 

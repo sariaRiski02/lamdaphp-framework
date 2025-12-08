@@ -13,15 +13,27 @@
         <button type="submit">Add</button>
     </form>
 
-    <ul>
-        <?php foreach ($todos as $todo): ?>
-        <li><?=  htmlspecialchars($todo['name'], ENT_QUOTES, 'UTF-8') ?> 
-            <!-- <a href="/checked/<?=  htmlspecialchars($todo['id'], ENT_QUOTES, 'UTF-8') ?>">selesai</a> | -->
-            <a href="/update/<?=  htmlspecialchars($todo['id'], ENT_QUOTES, 'UTF-8') ?>">update</a> |
-            <a href="/delete/<?=  htmlspecialchars($todo['id'], ENT_QUOTES, 'UTF-8') ?>">Delete</a> 
+    <table border="1" cellpadding="10" cellspacing="0" style="margin-top:20px;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Todo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($todos as $index => $todo): ?>
+            <tr>
+                <td><?=  htmlspecialchars($index + 1, ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?=  htmlspecialchars($todo['name'], ENT_QUOTES, 'UTF-8') ?></td>
+                <td>
+                    <a href="/update/<?=  htmlspecialchars($todo['id'], ENT_QUOTES, 'UTF-8') ?>">Update</a> |
+                    <a href="/delete/<?=  htmlspecialchars($todo['id'], ENT_QUOTES, 'UTF-8') ?>">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-        </li>
-        <?php endforeach; ?>
-    </ul>
 </body>
 </html>

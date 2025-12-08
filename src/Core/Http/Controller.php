@@ -2,6 +2,7 @@
 
 namespace Lamda\Core\Http;
 
+use Lamda\Core\Http\Response;
 use Lamda\Core\View\LamdaViewEngine;
 
 abstract class Controller
@@ -24,6 +25,11 @@ abstract class Controller
     protected function view(string $view, array $rawsData = []):string{
         
         return $this->getViewEngine()->render($view, $rawsData);
+    }
+
+    protected function redirect(string $url, int $status = 302): Response
+    {
+        return Response::make('', $status, ['Location' => $url]);
     }
 
     

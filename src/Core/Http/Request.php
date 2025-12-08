@@ -19,7 +19,6 @@ class Request
 
         // remove query string
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
-
         return new self($method, $path);
     }
 

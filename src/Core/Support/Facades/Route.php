@@ -8,7 +8,6 @@ use RuntimeException;
 class Route
 {
     protected static ?Router $router = null;
-
     public static function setRouter(Router $router):void
     {
         self::$router = $router;
