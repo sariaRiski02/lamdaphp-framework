@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Lamda\Core\Http\Controller;
 use Lamda\Core\Database\Database;
 
+
 class HomeController extends Controller{
 
     public function index(){
@@ -57,6 +58,10 @@ class HomeController extends Controller{
         ]);
 
         return $this->redirect('/');
+    }
+
+    public function model(){
+        
     }
 
 

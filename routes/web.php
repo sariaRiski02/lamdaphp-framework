@@ -9,3 +9,4 @@ Route::post('/', [HomeController::class, 'store']);
 Route::get('/delete/{id}', [HomeController::class, 'delete']);
 Route::get('/update/{id}', [HomeController::class, 'updatePage']);
 Route::post('/update/{id}', [HomeController::class, 'update']);
+Route::get('/model', [HomeController::class, 'model']);
