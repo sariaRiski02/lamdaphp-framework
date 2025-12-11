@@ -1,0 +1,11 @@
+<?php
+
+$basePath = dirname(__FILE__);
+require $basePath . '/vendor/autoload.php';
+
+define('BASE_PATH', $basePath);
+
+use Lamda\Core\Console\Kernel;
+
+$kernel = new Kernel();
+exit($kernel->handle($argv));

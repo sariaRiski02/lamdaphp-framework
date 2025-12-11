@@ -3,6 +3,7 @@
     "description": "LamdaPHP lightWeight modular PHP framework with rendering data realtime.",
     "type": "project",
     "license": "MIT",
+    "bin" : ["lamda"],
     "autoload": {
         "psr-4": {
             "Lamda\\": "src/",
