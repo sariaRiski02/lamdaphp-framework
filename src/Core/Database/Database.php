@@ -35,7 +35,6 @@ class Database
             $this->pdo = new PDO($dsn, $cfg['username'] ?? null, $cfg['password']?? null, $option);
         }catch(PDOException $e){
             // Jangan echo langsung di production - lempar exception
-            
             throw $e;
 
         }
