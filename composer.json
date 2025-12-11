@@ -1,6 +1,6 @@
 {
     "name": "lamdaphp/lamdaphp",
-    "description": "LamdaPHP lightWeight modular PHP framework with render realtime.",
+    "description": "LamdaPHP lightWeight modular PHP framework with rendering data realtime.",
     "type": "project",
     "license": "MIT",
     "autoload": {
@@ -15,6 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=8"
+        "php": ">=8",
+        "cboden/ratchet": "^0.4.4"
     }
 }

@@ -42,6 +42,7 @@ class LamdaViewEngine
 
     }
 
+    
 
     /**
      * Compile: resources/views/home.lamda.php => storage/cache/home.lamda.php
@@ -151,5 +152,4 @@ class LamdaViewEngine
 
     }
     
-
 }
