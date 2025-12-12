@@ -2,6 +2,8 @@
 
 namespace Lamda\Core\Http;
 
+use Exception;
+
 class Request
 {
     protected string $method;
@@ -30,4 +32,16 @@ class Request
     {
         return $this->path;
     }
+
+    public static function InputGet(string $param = ''){        
+        if($param == ''){
+            return $_GET;
+        }
+        if(!isset($_GET[$param])){
+            return null;
+        }   
+        return $_GET[$param];
+    }
+
+
 }

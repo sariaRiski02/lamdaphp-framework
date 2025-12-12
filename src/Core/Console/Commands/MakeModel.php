@@ -52,18 +52,18 @@ class MakeModel
     protected function generateTemplate(string $modelName): string
     {
         return <<<PHP
-                    <?php
+<?php
 
-                    namespace App\Models;
+namespace App\Models;
 
-                    use Lamda\Core\Model;
+use Lamda\Core\Model\Model;
 
-                    class $modelName extends Model
-                    {
-                        protected static string \$table = '<table_name>';
+class $modelName extends Model
+{
+    protected static string \$table = '<table_name>';
 
-                        // 
-                    }
-                PHP;
+    // 
+}
+PHP;
     }
 }

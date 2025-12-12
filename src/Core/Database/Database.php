@@ -96,4 +96,8 @@ class Database
         }
         return [];
     }
+
+    public function lastInsertId(): string{
+        return $this->pdo->lastInsertId();
+    }
 }

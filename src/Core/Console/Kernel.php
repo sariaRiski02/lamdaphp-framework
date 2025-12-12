@@ -4,10 +4,12 @@
 namespace Lamda\Core\Console;
 
 use Lamda\Core\Console\Commands\MakeController;
+use Lamda\Core\Console\Commands\MakeModel;
 
 class Kernel{
     protected array $commands = [
-        'make:controller' => MakeController::class
+        'make:controller' => MakeController::class,
+        'make:model' => MakeModel::class,
     ];
 
     public function handle(array $argv): int{

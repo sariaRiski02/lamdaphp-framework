@@ -63,5 +63,5 @@ class $controllerName extends Controller
     //
 }
 PHP;
-    }
+}
 }
