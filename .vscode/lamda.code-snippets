@@ -1,0 +1,115 @@
+{
+  "Lamda Echo (Escaped)": {
+    "prefix": "lecho",
+    "body": "{{ ${1:variable} }}",
+    "description": "Escaped output - automatically sanitize HTML"
+  },
+
+  "Lamda Raw Echo": {
+    "prefix": "lraw",
+    "body": "{!! ${1:variable} !!}",
+    "description": "Raw output - no sanitization"
+  },
+
+  "Lamda If Statement": {
+    "prefix": "lif",
+    "body": "@if(${1:condition})\n    ${2:content}\n@endif",
+    "description": "If statement in Lamda template"
+  },
+
+  "Lamda If-Else": {
+    "prefix": "lifelse",
+    "body": "@if(${1:condition})\n    ${2:if content}\n@else\n    ${3:else content}\n@endif",
+    "description": "If-else statement in Lamda template"
+  },
+
+  "Lamda If-ElseIf-Else": {
+    "prefix": "lifelseif",
+    "body": "@if(${1:condition1})\n    ${2:if content}\n@elseif(${3:condition2})\n    ${4:elseif content}\n@else\n    ${5:else content}\n@endif",
+    "description": "If-elseif-else statement in Lamda template"
+  },
+
+  "Lamda Foreach": {
+    "prefix": "lforeach",
+    "body": "@foreach(${1:items} as ${2:item})\n    ${3:content}}\n@endforeach",
+    "description": "Loop through items in Lamda template"
+  },
+
+  "Lamda Foreach with Key": {
+    "prefix": "lforeachkey",
+    "body": "@foreach(${1:items} as ${2:key} => ${3:value})\n    ${4:content}}\n@endforeach",
+    "description": "Loop with key-value in Lamda template"
+  },
+
+  "Lamda For Loop": {
+    "prefix": "lfor",
+    "body": "@for(${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++)\n    ${3:content}}\n@endfor",
+    "description": "Traditional for loop in Lamda template"
+  },
+
+  "Lamda Echo with Functions": {
+    "prefix": "lechoFunc",
+    "body": "{{ ${1:function}(${2:arg}) }}",
+    "description": "Echo function result in Lamda template"
+  },
+
+  "Lamda Ternary Operator": {
+    "prefix": "lternary",
+    "body": "{{ ${1:condition} ? '${2:true}' : '${3:false}' }}",
+    "description": "Ternary operator in Lamda template"
+  },
+
+  "Lamda Array Access": {
+    "prefix": "larr",
+    "body": "{{ ${1:array}['${2:key}'] }}",
+    "description": "Access array element in Lamda template"
+  },
+
+  "Lamda Object Property": {
+    "prefix": "lprop",
+    "body": "{{ ${1:object}->${2:property} }}",
+    "description": "Access object property in Lamda template"
+  },
+
+  "Lamda Method Call": {
+    "prefix": "lmethod",
+    "body": "{{ ${1:object}->${2:method}(${3:args}) }}",
+    "description": "Call object method in Lamda template"
+  },
+
+  "Lamda Comments": {
+    "prefix": "lcomment",
+    "body": "{{-- ${1:comment} --}}",
+    "description": "Comment in Lamda template (won't appear in output)"
+  },
+
+  "Lamda Table Loop": {
+    "prefix": "ltable",
+    "body": "<table>\n    <thead>\n        <tr>\n            <th>${1:header1}</th>\n            <th>${2:header2}</th>\n        </tr>\n    </thead>\n    <tbody>\n        @foreach(${3:items} as ${4:item})\n        <tr>\n            <td>{{ ${4:item}->${5:field1} }}</td>\n            <td>{{ ${4:item}->${6:field2} }}</td>\n        </tr>\n        @endforeach\n    </tbody>\n</table>",
+    "description": "Table with foreach loop in Lamda template"
+  },
+
+  "Lamda List Loop": {
+    "prefix": "llist",
+    "body": "<ul>\n    @foreach(${1:items} as ${2:item})\n    <li>{{ ${2:item}->${3:property} }}</li>\n    @endforeach\n</ul>",
+    "description": "Unordered list with foreach loop in Lamda template"
+  },
+
+  "Lamda Conditional Class": {
+    "prefix": "lclass",
+    "body": "class=\"{{ ${1:condition} ? '${2:class-true}' : '${3:class-false}' }}\"",
+    "description": "Conditional CSS class in Lamda template"
+  },
+
+  "Lamda Empty Check": {
+    "prefix": "lempty",
+    "body": "@if(empty(${1:variable}))\n    ${2:no data message}\n@else\n    ${3:show data}\n@endif",
+    "description": "Check if variable is empty"
+  },
+
+  "Lamda Count Check": {
+    "prefix": "lcount",
+    "body": "@if(count(${1:array}) > 0)\n    ${2:show items}\n@else\n    ${3:no items message}\n@endif",
+    "description": "Check if array has items"
+  }
+}
