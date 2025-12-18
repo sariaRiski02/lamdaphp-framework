@@ -5,7 +5,8 @@ use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 use Lamda\Core\WebSocket\ChatHandler;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+$projectRoot = realpath(__DIR__ . '/../../../');
+require $projectRoot . '/vendor/autoload.php';
 
 
 $server = IoServer::factory(

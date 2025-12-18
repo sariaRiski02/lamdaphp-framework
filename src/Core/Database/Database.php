@@ -30,7 +30,6 @@ class Database
 
         $option = $cfg['options'] && is_array($cfg['options']) ? $cfg['options'] + $defaultOptions : $defaultOptions;
 
-
         try{
             $this->pdo = new PDO($dsn, $cfg['username'] ?? null, $cfg['password']?? null, $option);
         }catch(PDOException $e){

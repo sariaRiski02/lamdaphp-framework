@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\GuestController;
 use Lamda\Core\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 
-Route::get("/", [GuestController::class, 'home']);
-Route::get("/detail/{id}", [GuestController::class, 'detail']);
+Route::get('/', [TestController::class, 'test']);
+
