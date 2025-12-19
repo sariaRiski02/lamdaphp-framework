@@ -32,7 +32,7 @@ class ChatHandler implements MessageComponentInterface{
 
     public function onMessage(ConnectionInterface $from, $msg)
     {
-        echo "Message received: {$msg}\n";
+        
         $data = json_decode($msg, true);
         
         // Jika bukan JSON (null), berarti pesan string biasa
@@ -44,8 +44,6 @@ class ChatHandler implements MessageComponentInterface{
         }
         
         try {
-            echo "Starting try block...\n";
-            
             // Handle berbagai action dari client
             if ($data['action'] === 'add') {
                 echo "Action: ADD\n";
@@ -55,20 +53,49 @@ class ChatHandler implements MessageComponentInterface{
                 if (empty($data['name'])) {
                     throw new Exception("Todo name cannot be empty");
                 }
+
+                if(!empty($data['name'])){
+                Todos::create([
+                    'name' => $data['name']
+                ]);
+            }
                 
-                // CREATE dulu
-                echo "Attempting to create todo...\n";
-                $result = Todos::create(['name' => $data['name']]);
-                echo "Created todo ID: {$result}\n";
-            } else {
+            }elseif($data['action']==='delete'){
+                echo "Action: DELETE\n";
+                echo "ID: " . ($data['id'] ?? 'NO ID') . "\n";
+                if (empty($data['id'])){
+                    throw new Exception ("Todo ID cannot be empty for deletion");
+                }
+                // Hapus todo berdasarkan ID
+                $todo = Todos::find($data['id']);
+                if (!$todo){
+                    throw new Exception("Todo with ID " . $data['id'] . " not found");
+                }
+                Todos::delete($data['id']);
+                echo "Todo with ID " . $data['id'] . " deleted.\n";
+
+            }elseif($data['action'] === 'update'){
+                echo "Action: UPDATE\n";
+                echo "ID: " . ($data['id'] ?? 'NO ID') . "\n";
+                echo "Name: " . ($data['name'] ?? 'NO NAME') . "\n";
+                if (empty($data['id']) || empty($data['name'])){
+                    throw new Exception ("Todo ID and name cannot be empty for update");
+                }
+                // Update todo berdasarkan ID
+                $todo = Todos::find($data['id']);
+                if (!$todo){
+                    throw new Exception("Todo with ID " . $data['id'] . " not found");
+                }
+                Todos::update($data['id'], ['name' => $data['name']]);
+                echo "Todo with ID " . $data['id'] . " updated.\n";
+            }
+            
+            else {
                 echo "Action is: " . ($data['action'] ?? 'null') . " (not 'add')\n";
             }
             
-            // SETELAH create (atau get), ambil semua data terbaru
-            echo "Fetching all todos...\n";
-            $todos = Todos::all();
-            echo "Total todos: " . count($todos) . "\n";
             
+            $todos = Todos::all();
             // Broadcast ke semua clients dengan data terbaru
             foreach($this->clients as $client){
                 $client->send(json_encode([
@@ -88,7 +115,6 @@ class ChatHandler implements MessageComponentInterface{
             }
         }
     }
-
     public function onClose(ConnectionInterface $conn)
     {
         $this->clients->detach($conn);

@@ -15,15 +15,24 @@
     <button onclick="addTodo()">Add</button>
 
 <script>
-    const ws = new WebSocket('ws://localhost:8080');
+    const endpoint = 'ws://localhost:8080';
+    const ws = new WebSocket(endpoint);
     
     function addTodo() {
         const input = document.getElementById('todo_input');
         const value = input.value.trim();
         if(value) {
-            ws.send(JSON.stringify({action: 'add', name: value}));
+            ws.send(JSON.stringify({
+                action: 'add', name: value
+            }));
             input.value = '';
         }
+    }
+
+    function deleteTodo(id){
+        ws.send(JSON.stringify({
+            action: 'delete', id: id
+        }));
     }
 
 
@@ -43,10 +52,23 @@
                 const todos = response.data;
                 const container = document.getElementById('daftar_todos');
                 container.innerHTML = ''; // Clear sebelumnya
-                
+                var count = 1;
                 todos.forEach(todo => {
                     const li = document.createElement('li');
-                    li.textContent = todo.id + '. ' + todo.name;
+                    const button = document.createElement('button');
+                    const anch = document.createElement('a');
+                    anch.textContent = 'update';
+                    anch.href = 'http://localhost:8000/update/'+todo.id;
+                    button.href = endpoint;
+                    button.textContent = 'delete';
+                    li.textContent = count++ + '. ' + todo.name + ' ';
+
+                    button.onclick = function(){
+                        deleteTodo(todo.id);
+                    };
+
+                    li.appendChild(button);
+                    li.appendChild(anch);
                     container.appendChild(li);
                 });
             } else {
@@ -58,13 +80,13 @@
         }
     }
 
-     ws.onerror = function(error){
-        console.error('WebSocket error:', error);
-     }
+    ws.onerror = function(error){
+    console.error('WebSocket error:', error);
+    }
 
-     ws.onclose = function(){
-        console.log('Disconnected from server');
-     }
+    ws.onclose = function(){
+    console.log('Disconnected from server');
+    }
 </script>
 </body>
 </html>
