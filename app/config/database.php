@@ -4,7 +4,7 @@
 return [
     'driver' => 'mysql',
     'host' => '127.0.0.1',
-    'database' => 'todos',
+    'database' => 'news_db',
     'username' => 'userphp',
     'password' => 'rahasia',
     'charset' => 'utf8mb4',

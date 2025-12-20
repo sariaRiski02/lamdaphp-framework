@@ -21,6 +21,18 @@ class Model
         return static::$instance;
     }
 
+    public static function query(string $query, array $params = []){
+        $db = Database::getInstance();
+        $result = $db->fetchAll($query, $params);
+        return $result;
+    }
+
+    public static function get(string $query){
+        $db = Database::getInstance();
+        $result = $db->fetchAll($query);
+        return $result;
+    }
+
     public static function all(){
         $table = static::$table;
         $db = Database::getInstance();

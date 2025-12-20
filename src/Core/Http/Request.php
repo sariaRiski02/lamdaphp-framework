@@ -33,7 +33,7 @@ class Request
         return $this->path;
     }
 
-    public static function InputGet(string $param = ''){        
+    public static function query($param = ''){        
         if($param == ''){
             return $_GET;
         }

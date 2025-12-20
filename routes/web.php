@@ -1,9 +1,7 @@
 <?php
 
 use Lamda\Core\Support\Facades\Route;
-use App\Http\Controllers\TodosController;
+use App\Http\Controllers\GuestController;
 
-
-Route::get('/', [TodosController::class, 'todos']);
-Route::get('/update/{id}', [TodosController::class, 'updateTodo']);
-
+Route::get('/',[GuestController::class, 'home']);
+Route::get('/news/{slug}',[GuestController::class, 'news']);
