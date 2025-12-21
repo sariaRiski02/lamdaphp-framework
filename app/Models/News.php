@@ -9,4 +9,6 @@ class News extends Model
     protected static string $table = 'news';
 
     // 
+
+    
 }

@@ -47,27 +47,25 @@
                     <form>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita">
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita" value="<?=  htmlspecialchars($news['title'], ENT_QUOTES, 'UTF-8') ?>">
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Slug</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Slug akan di-generate otomatis" readonly>
-                        </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
                             <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>Pilih Kategori</option>
-                                <option>Teknologi</option>
-                                <option>Olahraga</option>
-                                <option>Hiburan</option>
+                                <?php foreach ($categories as $item): ?>
+                                    <option value="<?=  htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8') ?>"
+                                        <?=  htmlspecialchars($item['id'] === $news['category_id'] ? 'selected' : '', ENT_QUOTES, 'UTF-8') ?>
+                                        ><?=  htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?></option>    
+                                    
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"></textarea>
+                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"><?=  htmlspecialchars($news['content'], ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
 
                         <div class="mb-4">

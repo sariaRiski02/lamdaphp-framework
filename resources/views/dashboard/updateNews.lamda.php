@@ -47,27 +47,27 @@
                     <form>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita">
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita" value="{{$news['title']}}">
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Slug</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Slug akan di-generate otomatis" readonly>
-                        </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
                             <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>Pilih Kategori</option>
-                                <option>Teknologi</option>
-                                <option>Olahraga</option>
-                                <option>Hiburan</option>
+                                @foreach($categories as $item)
+                                    
+                                    <option value="{{$item['id']}}"
+                                        {{$item['id'] === $news['category_id'] ? 'selected' : ''}}
+                                        >{{ $item['name'] }}</option>    
+                                    
+                                @endforeach
+                                
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"></textarea>
+                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita">{{ $news['content'] }}</textarea>
                         </div>
 
                         <div class="mb-4">

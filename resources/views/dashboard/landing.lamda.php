@@ -39,7 +39,6 @@
             </header>
 
             <div class="p-6">
-
                 <!-- STATISTICS SECTION -->
                 <section id="statistics" class="mb-8">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -48,7 +47,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Total Berita</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">24</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">{{ $totalNews }}</p>
                                 </div>
                                 <div class="bg-blue-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +63,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Total Kategori</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">5</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">{{$totalCategory}}</p>
                                 </div>
                                 <div class="bg-green-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -78,8 +77,8 @@
                         <div class="bg-white rounded-lg shadow-md p-6">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-gray-600 text-sm font-semibold">Berita Hari Ini</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">3</p>
+                                    <p class="text-gray-600 text-sm font-semibold">Terpublikasi</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">{{ $published }}</p>
                                 </div>
                                 <div class="bg-yellow-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
@@ -94,7 +93,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Dalam Draft</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">5</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">{{ $draft }}</p>
                                 </div>
                                 <div class="bg-purple-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
@@ -160,30 +159,30 @@
                                     <th class="px-6 py-3 text-left font-semibold text-gray-700">Judul</th>
                                     <th class="px-6 py-3 text-left font-semibold text-gray-700">Kategori</th>
                                     <th class="px-6 py-3 text-left font-semibold text-gray-700">Tanggal</th>
+                                    <th class="px-6 py-3 text-left font-semibold text-gray-700">Status</th>
                                     <th class="px-6 py-3 text-left font-semibold text-gray-700">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-6 py-4">1</td>
-                                    <td class="px-6 py-4">Berita Terbaru Tentang Teknologi</td>
-                                    <td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Teknologi</span></td>
-                                    <td class="px-6 py-4">21 Des 2025</td>
-                                    <td class="px-6 py-4 flex gap-2">
-                                        <a href="#edit-news" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-                                        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-6 py-4">2</td>
-                                    <td class="px-6 py-4">Pertandingan Sepak Bola Seru</td>
-                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded">Olahraga</span></td>
-                                    <td class="px-6 py-4">20 Des 2025</td>
-                                    <td class="px-6 py-4 flex gap-2">
-                                        <a href="#edit-news" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-                                        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
-                                    </td>
-                                </tr>
+                                @foreach($news as $item)
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="px-6 py-4">-</td>
+                                        <td class="px-6 py-4">{{ $item['title'] }}</td>
+                                        <td class="px-6 py-4">
+                                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded">{{ $item['category_name'] }}</span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="{{$item['status'] == 'draft' ? 'bg-red-100 text-black-100' : 'bg-blue-100 text-blue-800'}}  px-3 py-1 rounded">
+                                                {{ $item['status'] }}
+                                            </span></td>
+                                        <td class="px-6 py-4">{{ $item['created_at'] }}</td>
+                                        <td class="px-6 py-4 flex gap-2">
+                                            <a href="/dashboard/news/update/{{$item['slug']}}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
+                                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
+                                        </td>
+                                    </tr>    
+                                @endforeach
+                               
                             </tbody>
                         </table>
                     </div>

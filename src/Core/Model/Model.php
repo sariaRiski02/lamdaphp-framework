@@ -27,6 +27,13 @@ class Model
         return $result;
     }
 
+    public static function count(){
+        $table = static::$table;
+        $db = Database::getInstance();
+        $result = $db->fetchOne("SELECT COUNT(*) AS count FROM $table");
+        return $result['count'] ?? 0;
+    }
+
     public static function get(string $query){
         $db = Database::getInstance();
         $result = $db->fetchAll($query);
