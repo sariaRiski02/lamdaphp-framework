@@ -43,7 +43,7 @@ class Router{
         
 
         if(!$route){
-            return Response::make('404 Not Found', 404);
+            return Response::make('404 URL: "'. $path .'" Not Found', 404);
         }
 
         $action = $route->getAction();
