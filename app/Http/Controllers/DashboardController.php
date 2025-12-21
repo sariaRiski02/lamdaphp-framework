@@ -10,8 +10,11 @@ class DashboardController extends Controller
         return $this->view('dashboard.landing');
     }
 
+    public function listNewsPage(){
+        return $this->view('dashboard.listNews');
+    }
+
     public function addNewsPage(){
-        
         return $this->view('dashboard.addNews');
     }
 
@@ -19,9 +22,6 @@ class DashboardController extends Controller
         return $this->view('dashboard.updateNews');
     }
     
-    public function listNewsPage(){
-        return $this->view('dashboard.listNews');
-    }
     
     public function setCategoryPage(){
         return $this->view('dashboard.setCategory');

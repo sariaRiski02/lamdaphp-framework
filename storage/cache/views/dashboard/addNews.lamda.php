@@ -19,17 +19,14 @@
                 <a href="/dashboard" class="block px-6 py-3 hover:bg-gray-800">
                     Dashboard
                 </a>
-                <a href="#" class="block px-6 py-3 bg-blue-600 border-l-4 border-blue-400">
+                <a href="/dashboard/add-news" class="block px-6 py-3  bg-blue-600 border-l-4 border-blue-400">
                     Tambah Berita
                 </a>
-                <a href="#list-news" class="block px-6 py-3 hover:bg-gray-800">
+                <a href="/dashboard/list-news" class="block px-6 py-3 hover:bg-gray-800">
                     List Berita
                 </a>
-                <a href="#add-category" class="block px-6 py-3 hover:bg-gray-800">
-                    Tambah Kategori
-                </a>
-                <a href="#" class="block px-6 py-3 hover:bg-gray-800">
-                    Logout
+                <a href="/dashboard/category" class="block px-6 py-3 hover:bg-gray-800">
+                    Atur Kategori
                 </a>
             </nav>
         </aside>

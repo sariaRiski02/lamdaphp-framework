@@ -16,20 +16,17 @@
             </div>
             
             <nav class="mt-6">
-                <a href="/dasboard" class="block px-6 py-3 bg-blue-600 border-l-4 border-blue-400">
+                <a href="/dashboard" class="block px-6 py-3 bg-blue-600 border-l-4 border-blue-400">
                     Dashboard
                 </a>
-                <a href="/dashboad/add-news" class="block px-6 py-3 hover:bg-gray-800">
+                <a href="/dashboard/add-news" class="block px-6 py-3 hover:bg-gray-800">
                     Tambah Berita
                 </a>
-                <a href="#list-news" class="block px-6 py-3 hover:bg-gray-800">
+                <a href="/dashboard/list-news" class="block px-6 py-3 hover:bg-gray-800">
                     List Berita
                 </a>
-                <a href="#add-category" class="block px-6 py-3 hover:bg-gray-800">
-                    Tambah Kategori
-                </a>
-                <a href="#" class="block px-6 py-3 hover:bg-gray-800">
-                    Logout
+                <a href="/dashboard/category" class="block px-6 py-3 hover:bg-gray-800">
+                    Atur Kategori
                 </a>
             </nav>
         </aside>
@@ -43,40 +40,112 @@
 
             <div class="p-6">
 
-                <!-- ADD NEWS SECTION -->
-                <section id="add-news" class="bg-white rounded-lg shadow-md p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Tambah Berita Baru</h3>
-                    
-                    <form>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita">
+                <!-- STATISTICS SECTION -->
+                <section id="statistics" class="mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <!-- Total Berita -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-semibold">Total Berita</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">24</p>
+                                </div>
+                                <div class="bg-blue-100 p-4 rounded-full">
+                                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"></path>
+                                        <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>Pilih Kategori</option>
-                                <option>Teknologi</option>
-                                <option>Olahraga</option>
-                                <option>Hiburan</option>
-                            </select>
+                        <!-- Total Kategori -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-semibold">Total Kategori</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">5</p>
+                                </div>
+                                <div class="bg-green-100 p-4 rounded-full">
+                                    <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M7 3a1 1 0 000 2h6a1 1 0 000-2H7zM4 7a1 1 0 011-1h10a1 1 0 011 1v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7z"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"></textarea>
+                        <!-- Berita Hari Ini -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-semibold">Berita Hari Ini</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">3</p>
+                                </div>
+                                <div class="bg-yellow-100 p-4 rounded-full">
+                                    <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Gambar</label>
-                            <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                        <!-- Status Publikasi -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-semibold">Dalam Draft</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2">5</p>
+                                </div>
+                                <div class="bg-purple-100 p-4 rounded-full">
+                                    <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4z"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </section>
 
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
-                            Simpan Berita
-                        </button>
-                    </form>
+                <!-- QUICK ACTION SECTION -->
+                <section id="quick-action" class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Aksi Cepat</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <a href="/dashboard/add-news" class="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-md p-6 transition transform hover:scale-105">
+                            <div class="flex items-center gap-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-bold">Tambah Berita</p>
+                                    <p class="text-sm opacity-90">Buat berita baru</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="/dashboard/list-news" class="bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg shadow-md p-6 transition transform hover:scale-105">
+                            <div class="flex items-center gap-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-bold">Daftar Berita</p>
+                                    <p class="text-sm opacity-90">Kelola semua berita</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="/dashboard/category" class="bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-lg shadow-md p-6 transition transform hover:scale-105">
+                            <div class="flex items-center gap-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-bold">Kelola Kategori</p>
+                                    <p class="text-sm opacity-90">Atur kategori berita</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </section>
 
                 <!-- LIST NEWS SECTION -->
@@ -120,87 +189,7 @@
                     </div>
                 </section>
 
-                <!-- EDIT NEWS SECTION -->
-                <section id="edit-news" class="bg-white rounded-lg shadow-md p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Edit Berita</h3>
-                    
-                    <form>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="Berita Terbaru Tentang Teknologi">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option selected>Teknologi</option>
-                                <option>Olahraga</option>
-                                <option>Hiburan</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">Ini adalah isi dari berita yang akan diedit...</textarea>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Gambar</label>
-                            <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                        </div>
-
-                        <div class="flex gap-3">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
-                                Update Berita
-                            </button>
-                            <a href="#list-news" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg">
-                                Batal
-                            </a>
-                        </div>
-                    </form>
-                </section>
-
-                <!-- ADD CATEGORY SECTION -->
-                <section id="add-category" class="bg-white rounded-lg shadow-md p-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Kelola Kategori</h3>
-                    
-                    <!-- Add Category Form -->
-                    <div class="mb-8 pb-8 border-b">
-                        <h4 class="text-lg font-bold text-gray-700 mb-4">Tambah Kategori Baru</h4>
-                        <form class="flex gap-3">
-                            <input type="text" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nama kategori baru">
-                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
-                                Tambah
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Category List -->
-                    <h4 class="text-lg font-bold text-gray-700 mb-4">Daftar Kategori</h4>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Teknologi</span>
-                            <div class="flex gap-2">
-                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</button>
-                                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Olahraga</span>
-                            <div class="flex gap-2">
-                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</button>
-                                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Hiburan</span>
-                            <div class="flex gap-2">
-                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</button>
-                                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
             </div>
         </main>
