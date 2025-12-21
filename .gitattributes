@@ -1,0 +1,7 @@
+# Pastikan semua file .php dianggap sebagai PHP (menghilangkan deteksi 'Hack')
+*.php linguist-language=PHP
+
+# Sembunyikan folder pihak ketiga/auto-generated agar tidak merusak statistik
+vendor/* linguist-vendored
+storage/* linguist-vendored
+public/build/* linguist-vendored
