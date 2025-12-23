@@ -26,6 +26,10 @@
                 <span>Oleh: {{ $news['author'] ?? 'Admin' }}</span>
             </div>
             
+            @if($news['thumbnail'])
+                <img src="/storage/images/{{$news['thumbnail']}}" alt="{{ $news['thumbnail'] ?? 'News Image' }}" class="w-full h-96 object-cover rounded-lg mb-6">
+            
+            @endif
             <!-- Title -->
             <h1 class="text-4xl font-bold text-gray-900 mb-6">
                 {{ $news['title'] }}

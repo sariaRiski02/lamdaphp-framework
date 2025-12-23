@@ -26,6 +26,10 @@
                 <span>Oleh: <?=  htmlspecialchars($news['author'] ?? 'Admin', ENT_QUOTES, 'UTF-8') ?></span>
             </div>
             
+            <?php if ($news['thumbnail']): ?>
+                <img src="/storage/images/<?=  htmlspecialchars($news['thumbnail'], ENT_QUOTES, 'UTF-8') ?>" alt="<?=  htmlspecialchars($news['thumbnail'] ?? 'News Image', ENT_QUOTES, 'UTF-8') ?>" class="w-full h-96 object-cover rounded-lg mb-6">
+            
+            <?php endif; ?>
             <!-- Title -->
             <h1 class="text-4xl font-bold text-gray-900 mb-6">
                 <?=  htmlspecialchars($news['title'], ENT_QUOTES, 'UTF-8') ?>

@@ -185,6 +185,11 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mt-6 text-right">
+                        <a href="/dashboard/list-news" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition transform hover:scale-105">
+                            Lihat Selengkapnya
+                        </a>
+                    </div>
                 </section>
 
                 

@@ -27,7 +27,7 @@ class GuestController extends Controller
                     n.*,
                     c.name AS category_name
                 FROM news AS n
-                INNER JOIN categories AS c ON n.category_id = c.id
+                INNER JOIN categories AS c ON n.category_id = c.id ORDER BY id DESC
             ");
         }
         return $this->view('home',compact('allNews'));

@@ -56,26 +56,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-6 py-4">1</td>
-                                    <td class="px-6 py-4">Berita Terbaru Tentang Teknologi</td>
-                                    <td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded">Teknologi</span></td>
-                                    <td class="px-6 py-4">21 Des 2025</td>
-                                    <td class="px-6 py-4 flex gap-2">
-                                        <a href="/dashboard/list-news/update/1" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-                                        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-6 py-4">2</td>
-                                    <td class="px-6 py-4">Pertandingan Sepak Bola Seru</td>
-                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded">Olahraga</span></td>
-                                    <td class="px-6 py-4">20 Des 2025</td>
-                                    <td class="px-6 py-4 flex gap-2">
-                                        <a href="/dashboard/list-news/update/1" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-                                        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
-                                    </td>
-                                </tr>
+                                
+                                @foreach($news as $item)
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="px-6 py-4">-</td>
+                                        <td class="px-6 py-4">{{ $item['title'] }}</td>
+                                        <td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded">{{ $item['category_name'] }}</span></td>
+                                        <td class="px-6 py-4">{{ $item['created_at'] }}</td>
+                                        <td class="px-6 py-4 flex gap-2">
+                                            <a href="/dashboard/news/update/{{ $item['slug'] }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
+                                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

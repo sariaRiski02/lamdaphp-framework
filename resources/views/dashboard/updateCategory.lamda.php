@@ -42,22 +42,14 @@
 
                 <!-- UPDATE CATEGORY SECTION -->
                 <section id="update-category" class="bg-white rounded-lg shadow-md p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Edit Kategori</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        Edit Kategori
+                    </h3>
                     
                     <form>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Nama Kategori</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-semibold mb-2">Slug</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Slug akan di-generate otomatis" readonly>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-semibold mb-2">Deskripsi</label>
-                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan deskripsi kategori (opsional)"></textarea>
+                            <input type="text" value="{{$category['name']}}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
                         </div>
 
                         <div class="flex gap-3">

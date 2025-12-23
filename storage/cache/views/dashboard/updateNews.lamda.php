@@ -71,7 +71,7 @@
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Gambar Saat Ini</label>
                             <div class="mb-3">
-                                <img src="" alt="Current Image" class="w-32 h-32 object-cover rounded-lg border border-gray-300">
+                                <img src="/storage/images/<?=  htmlspecialchars($news['thumbnail'], ENT_QUOTES, 'UTF-8') ?>" alt="Current Image" class="w-32 h-32 object-cover rounded-lg border border-gray-300">
                             </div>
                         </div>
 

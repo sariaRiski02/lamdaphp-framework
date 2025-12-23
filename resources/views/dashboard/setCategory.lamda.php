@@ -58,27 +58,16 @@
                     <!-- Category List -->
                     <h4 class="text-lg font-bold text-gray-700 mb-4">Daftar Kategori</h4>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Teknologi</span>
-                            <div class="flex gap-2">
-                                <a href="/dashboard/category/update/1" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</a>
-                                <a href="" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</a>
+                        @foreach($categories as $category)
+                            <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
+                                <span class="font-semibold text-gray-800">{{ $category['name'] }}</span>
+                                <div class="flex gap-2">
+                                    <a href="/dashboard/category/update/{{$category['slug']}}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</a>
+                                    <a href="" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Olahraga</span>
-                            <div class="flex gap-2">
-                                <a href="/dashboard/category/update/1" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</a>
-                                <a href="" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</a>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
-                            <span class="font-semibold text-gray-800">Hiburan</span>
-                            <div class="flex gap-2">
-                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</button>
-                                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</button>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </section>
 

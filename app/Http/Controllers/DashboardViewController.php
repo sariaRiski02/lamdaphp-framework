@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use Lamda\Core\Database\Database;
 use Lamda\Core\Http\Controller;
 
 class DashboardViewController extends Controller
@@ -15,7 +14,7 @@ class DashboardViewController extends Controller
         $published = array_filter($news, function($item){
             return isset($item['status']) && $item['status'] === 'published';
         });
-
+        
         $draft = array_filter($news, function($item){
             return isset($item['status']) && $item['status'] === 'draft';
         });
@@ -47,30 +46,49 @@ class DashboardViewController extends Controller
     }
 
     public function listNewsPage(){
-        return $this->view('dashboard.listNews');
+        $news = News::get(
+            "SELECT 
+                n.*,
+                c.name AS category_name
+            FROM 
+                news AS n
+            INNER JOIN 
+                categories AS c ON n.category_id = c.id ORDER BY n.id DESC
+            "
+        );
+
+        return $this->view('dashboard.listNews', compact('news'));
     }
 
     public function addNewsPage(){
-        return $this->view('dashboard.addNews');
+
+        $categories = Category::all();
+
+        return $this->view('dashboard.addNews', compact('categories'));
     }
 
     public function updateNewsPage($slug){
+
+
         $news = News::where('slug', value:$slug)[0];
         $categories = Category::all();
-        
         return $this->view('dashboard.updateNews',compact(
             'news',
             'categories',
         ));
+
     }
     
     
     public function setCategoryPage(){
-        return $this->view('dashboard.setCategory');
+        $categories = Category::all();
+        return $this->view('dashboard.setCategory', compact('categories'));
     }
 
-    public function updateCategoryPage(){
-        return $this->view('dashboard.updateCategory');
+    public function updateCategoryPage($slug){
+        $category = Category::where('slug', value:$slug)[0];
+        
+        return $this->view('dashboard.updateCategory',compact('category'));
     }
 
 }

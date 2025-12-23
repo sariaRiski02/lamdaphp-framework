@@ -44,30 +44,40 @@
                 <section id="add-news" class="bg-white rounded-lg shadow-md p-8 mb-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6">Tambah Berita Baru</h3>
                     
-                    <form>
+                    <form method="POST" action="/dashboard/news/store" enctype="multipart/form-data">
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita">
+                            <input type="text" name="title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita">
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select name="category_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option>Pilih Kategori</option>
-                                <option>Teknologi</option>
-                                <option>Olahraga</option>
-                                <option>Hiburan</option>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?=  htmlspecialchars($category['slug'], ENT_QUOTES, 'UTF-8') ?>"><?=  htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8') ?></option>
+                                
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"></textarea>
+                            <textarea name="content" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita"></textarea>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Gambar</label>
-                            <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <input type="file" accept="image/*" name="thumbnail" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Status</label>
+                            <select name="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Pilih Status</option>
+                                <option value="published">Publish</option>
+                                <option value="draft">Draft</option>
+                            </select>
                         </div>
 
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">

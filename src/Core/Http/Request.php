@@ -43,5 +43,9 @@ class Request
         return $_GET[$param];
     }
 
+    public static function input($name = ''){
+        return $name == '' ? $_POST : $_POST["$name"];
+    }
+
 
 }
