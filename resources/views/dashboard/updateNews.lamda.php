@@ -44,16 +44,16 @@
                 <section id="update-news" class="bg-white rounded-lg shadow-md p-8 mb-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6">Edit Berita</h3>
                     
-                    <form>
+                    <form action="/dashboard/news/update/{{$news['slug']}}" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Judul</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita" value="{{$news['title']}}">
+                            <input name="title" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan judul berita" value="{{$news['title']}}">
                         </div>
 
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select name="category_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 @foreach($categories as $item)
                                     
                                     <option value="{{$item['id']}}"
@@ -67,7 +67,7 @@
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Konten</label>
-                            <textarea rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita">{{ $news['content'] }}</textarea>
+                            <textarea name="content" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan isi berita">{{ $news['content'] }}</textarea>
                         </div>
 
                         <div class="mb-4">
@@ -79,15 +79,14 @@
 
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Ganti Gambar</label>
-                            <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <input type="file" name="thumbnail" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
                         </div>
 
                         <div class="mb-6">
                             <label class="block text-gray-700 font-semibold mb-2">Status</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>Dipublikasikan</option>
-                                <option>Draft</option>
-                                <option>Diarsipi</option>
+                            <select name="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="published" {{$news['status'] === 'published' ? 'selected' : ''}}>Dipublikasikan</option>
+                                <option value="Draft" {{$news['status'] === 'Draft' ? 'selected' : ''}}>Draft</option>
                             </select>
                         </div>
 

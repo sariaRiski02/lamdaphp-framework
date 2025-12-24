@@ -46,10 +46,10 @@
                         Edit Kategori
                     </h3>
                     
-                    <form>
+                    <form action="/dashboard/category/update/{{$category['slug']}}" method="POST">
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Nama Kategori</label>
-                            <input type="text" value="{{$category['name']}}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
+                            <input type="text" name="name" value="{{$category['name']}}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
                         </div>
 
                         <div class="flex gap-3">

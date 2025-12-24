@@ -199,5 +199,23 @@
         </main>
 
     </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+        ws.onopen = () => {
+            console.log('WebSocket connection established');
+        }
+        ws.onmessage = (event) => {
+            
+        };
+        ws.onclose = ()=>{
+            
+        }
+        ws.onerror = ()=>{
+
+        }
+
+
+    </script>
 </body>
 </html>

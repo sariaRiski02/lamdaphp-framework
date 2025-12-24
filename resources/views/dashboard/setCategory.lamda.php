@@ -47,8 +47,8 @@
                     <!-- Add Category Form -->
                     <div class="mb-8 pb-8 border-b">
                         <h4 class="text-lg font-bold text-gray-700 mb-4">Tambah Kategori Baru</h4>
-                        <form class="flex gap-3">
-                            <input type="text" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nama kategori baru">
+                        <form action="/dashboard/category/store" method="POST" class="flex gap-3">
+                            <input type="text" name="name" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nama kategori baru">
                             <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
                                 Tambah
                             </button>
@@ -63,7 +63,9 @@
                                 <span class="font-semibold text-gray-800">{{ $category['name'] }}</span>
                                 <div class="flex gap-2">
                                     <a href="/dashboard/category/update/{{$category['slug']}}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">Edit</a>
-                                    <a href="" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</a>
+                                    <form action="/dashboard/category/delete/{{ $category['slug'] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach

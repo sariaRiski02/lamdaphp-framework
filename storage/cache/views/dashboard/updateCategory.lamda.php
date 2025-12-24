@@ -46,10 +46,10 @@
                         Edit Kategori
                     </h3>
                     
-                    <form>
+                    <form action="/dashboard/category/update/<?=  htmlspecialchars($category['slug'], ENT_QUOTES, 'UTF-8') ?>" method="POST">
                         <div class="mb-4">
                             <label class="block text-gray-700 font-semibold mb-2">Nama Kategori</label>
-                            <input type="text" value="<?=  htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8') ?>" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
+                            <input type="text" name="name" value="<?=  htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8') ?>" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama kategori">
                         </div>
 
                         <div class="flex gap-3">

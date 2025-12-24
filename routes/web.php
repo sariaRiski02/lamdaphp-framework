@@ -15,4 +15,9 @@ Route::get('/dashboard/category', [DashboardViewController::class, 'setCategoryP
 Route::get('/dashboard/category/update/{slug}', [DashboardViewController::class, 'updateCategoryPage']);
 
 Route::post('/dashboard/news/store',[DashLogicController::class, 'storeNews']);
+Route::post('/dashboard/news/update/{slug}', [DashLogicController::class, 'updateNews']);
+Route::post('/dashboard/news/delete/{slug}', [DashLogicController::class, 'deleteNews']);
+Route::post('/dashboard/category/store',[DashLogicController::class, 'storeCategory']);
+Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'updateCategory']);
+Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
