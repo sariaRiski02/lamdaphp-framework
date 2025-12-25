@@ -1,6 +1,7 @@
 <?php
 
 use Lamda\Core\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DashLogicController;
 use App\Http\Controllers\DashboardViewController;
@@ -21,3 +22,5 @@ Route::post('/dashboard/category/store',[DashLogicController::class, 'storeCateg
 Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'updateCategory']);
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
+
+Route::get('/events/news', [EventController::class, 'newsEvents']);

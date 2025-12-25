@@ -82,5 +82,18 @@
         </div>
     </footer>
 
+    <script>
+        // **Buat SSE connection ke server**
+        const eventSource = new EventSource('/events/news');
+        var counter = 0;
+        eventSource.onmessage = function(event){
+            console.log("client received: " + counter++, event.data);
+        }
+
+        
+
+
+    </script>
+
 </body>
 </html>

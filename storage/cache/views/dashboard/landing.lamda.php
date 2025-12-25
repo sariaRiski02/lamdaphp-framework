@@ -198,5 +198,64 @@
         </main>
 
     </div>
+
+     <h1>News Updates (Real-time with SSE)</h1>
+    
+    <!-- Container untuk menampilkan notifikasi -->
+    <div id="notifications" style="border: 1px solid #ccc; padding: 10px; min-height: 100px;">
+        <p style="color: gray;">Waiting for news updates...</p>
+    </div>
+
+    <script>
+        // **Buat SSE connection ke server**
+        const eventSource = new EventSource('/events/news');
+        
+        // **Event: Saat menerima data dari server**
+        eventSource.onmessage = function(event) {
+            console.log('Received data:', event.data);
+            
+            try {
+                // Parse JSON yang dikirim server
+                const data = JSON.parse(event.data);
+                
+                // Tampilkan di browser
+                const notifDiv = document.getElementById('notifications');
+                const newsEl = document.createElement('div');
+                newsEl.style.padding = '10px';
+                newsEl.style.marginTop = '10px';
+                newsEl.style.backgroundColor = '#f0f0f0';
+                newsEl.style.borderRadius = '5px';
+                
+                // Jika ada message field (connection established)
+                if (data.message) {
+                    newsEl.textContent = '✓ ' + data.message;
+                    newsEl.style.backgroundColor = '#d4edda';
+                } else {
+                    // Jika ada news data (berita baru)
+                    newsEl.innerHTML = `
+                        <strong>📰 Berita Baru: ${data.title}</strong><br>
+                        <small>${data.created_at}</small>
+                    `;
+                    newsEl.style.backgroundColor = '#cce5ff';
+                }
+                
+                notifDiv.appendChild(newsEl);
+            } catch(e) {
+                console.error('Parse error:', e);
+            }
+        };
+        
+        // **Event: Saat ada error**
+        eventSource.onerror = function(error) {
+            console.error('SSE Error:', error);
+            eventSource.close();
+            
+            const notifDiv = document.getElementById('notifications');
+            const errorEl = document.createElement('div');
+            errorEl.textContent = '❌ Connection lost';
+            errorEl.style.color = 'red';
+            notifDiv.appendChild(errorEl);
+        };
+    </script>
 </body>
 </html>

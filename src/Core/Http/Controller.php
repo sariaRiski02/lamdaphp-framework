@@ -17,8 +17,7 @@ abstract class Controller
             $cachePath = BASE_PATH . '/storage/cache/views';
 
             static::$viewEngine = new LamdaViewEngine($viewPath, $cachePath);
-        }
-
+        } 
         return static::$viewEngine;
     }
 
