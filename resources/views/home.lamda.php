@@ -35,7 +35,7 @@
         </div>
 
         <!-- News Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div data-bind="news" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- News Card -->
              @foreach($allNews as $news)
@@ -88,12 +88,9 @@
     <script>
         // **Buat SSE connection ke server**
         const eventSource = new EventSource('/events/news');
-        var counter = 0;
-        eventSource.onmessage = function(event){
-            console.log("client received: " + counter++, event.data);
-        }
-        
+        eventSource.addEventListener('update', function(event){
+            document.querySelector('[data-bind="news"]').innerHTML = event.data;
+        });
     </script>
-
 </body>
 </html>

@@ -23,4 +23,4 @@ Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'u
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
 
-Route::get('/events/news', [EventController::class, 'newsEvents']);
+Route::get('/events/news', [EventController::class, '_news']);
