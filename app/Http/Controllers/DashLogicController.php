@@ -7,6 +7,7 @@ use App\Models\News;
 use Lamda\Core\Http\Controller;
 use Lamda\Core\Http\Request;
 use Lamda\Core\Http\Response;
+use Lamda\Core\SSE\EventDispatcher;
 
 class DashLogicController extends Controller
 {
@@ -58,6 +59,12 @@ class DashLogicController extends Controller
         } catch (\Throwable $th) {
             return $this->redirect('/dashboard/add-news');
         }
+
+        EventDispatcher::dispatch('news_update', 
+        [
+            'message' => 'News updated'
+        ]);
+
 
         return $this->redirect('/dashboard/list-news');
     }
@@ -121,6 +128,12 @@ class DashLogicController extends Controller
             
         }
 
+
+        EventDispatcher::dispatch('news_update', 
+        [
+            'message' => 'News updated'
+        ]);
+
         return $this->redirect('/dashboard/list-news');
 
         
@@ -143,6 +156,11 @@ class DashLogicController extends Controller
         } catch (\Throwable $th) {
             return $this->redirect('/dashboard/list-news');
         }
+
+        EventDispatcher::dispatch('news_update', 
+        [
+            'message' => 'News updated'
+        ]);
 
         return $this->redirect('/dashboard/list-news');
     }

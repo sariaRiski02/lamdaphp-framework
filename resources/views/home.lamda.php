@@ -87,10 +87,22 @@
 
     <script>
         // **Buat SSE connection ke server**
-        const eventSource = new EventSource('/events/news');
-        eventSource.addEventListener('update', function(event){
-            document.querySelector('[data-bind="news"]').innerHTML = event.data;
+        const eventSource = new EventSource('/events');
+        eventSource.addEventListener('news_update', function(event){
+            fetch('/_news')
+                .then(res=> res.json())
+                .then(data=>{
+                    document.querySelector('[data-bind="news"]').innerHTML = data.data;
+                }).catch(err=>console.error(err));
         });
+        eventSource.onopen = function(){
+            console.log('Connection to server opened.');
+        };
+        eventSource.onerror = function(err){
+            console.error('EventSource failed:', err);
+        };
+
+        
     </script>
 </body>
 </html>

@@ -98,4 +98,9 @@ class Response
         $clone->headers[$name] = $value;
         return $clone;
     }
+
+    public static function json($data, int $status = 200, array $headers = []): self{
+        $headers['Content-Type'] = 'application/json';
+        return self::make($data, $status, $headers);
+    }
 }

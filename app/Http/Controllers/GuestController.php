@@ -6,6 +6,7 @@ use App\Models\News;
 use Lamda\Core\Http\Controller;
 use Lamda\Core\Database\Database;
 use Lamda\Core\Http\Request;
+use Lamda\Core\Http\Response;
 
 class GuestController extends Controller
 {
@@ -46,4 +47,23 @@ class GuestController extends Controller
         
         return $this->view('news', compact('news'));
     }
+
+
+    public function _news(){
+        
+        $allNews = News::get("
+                SELECT
+                    n.*,
+                    c.name AS category_name
+                    FROM news AS n
+                    INNER JOIN categories AS c ON n.category_id = c.id ORDER BY id DESC
+                ");
+
+        $allNews = $this->view('component._list-news', compact('allNews'));
+        
+        return Response::json([
+            'data' => $allNews
+        ]);
+    }
+    
 }

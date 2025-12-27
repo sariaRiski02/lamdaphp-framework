@@ -1,7 +1,8 @@
 <?php
 
+use Lamda\Core\SSE\EventController;
+
 use Lamda\Core\Support\Facades\Route;
-use App\Http\Controllers\EventController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DashLogicController;
 use App\Http\Controllers\DashboardViewController;
@@ -23,4 +24,5 @@ Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'u
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
 
-Route::get('/events/news', [EventController::class, '_news']);
+Route::get('/events', [EventController::class, 'stream']);
+Route::get('/_news', [GuestController::class, '_news']);
