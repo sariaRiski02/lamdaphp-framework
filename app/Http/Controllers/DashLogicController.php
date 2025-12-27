@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\News;
 use Lamda\Core\Http\Controller;
 use Lamda\Core\Http\Request;
-use Lamda\Core\Http\Response;
 use Lamda\Core\SSE\EventDispatcher;
 
 class DashLogicController extends Controller

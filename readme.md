@@ -27,7 +27,7 @@ LamdaPHP is a **micro-framework** with:
 - Clean modular structure  
 - Laravel-like facade syntax  
 - Flexible handlers (closure, array callbacks, `"Controller@method"`)  
-- Built-in realtime support (SSE planned)  
+- Built-in realtime support (SSE under construction)  
 - Zero external dependencies (pure PHP)
 
 It’s designed to be **understandable**, not **massive**.
@@ -81,13 +81,32 @@ Run local server:
 php -S localhost:8000 -t public
 ````
 
-Try some routes:
 
-* `/`
-* `/ping`
-* `/hello/yourname`
+### ⚠️ Server Requirements
 
----
+For real-time features (SSE), use **Nginx** or **Apache** instead of PHP's built-in server:
+
+```bash
+# Built-in server (single-threaded, not recommended)
+php -S localhost:8000 -t public
+
+# Use Nginx or Apache for production/real-time features
+```
+
+The built-in PHP server handles only one request at a time, which breaks real-time functionality. Yeah, it's that bad.
+
+```bash
+# Windows: Use Apache (recommended)
+# Linux: Use multi-worker PHP server
+PHP_CLI_SERVER_WORKERS=4 php -S localhost:8000 -t public
+```
+
+**Note:** On Windows, the built-in server doesn't support multiple workers — Apache or Nginx it is. On Linux, you can use the `PHP_CLI_SERVER_WORKERS` environment variable to handle multiple concurrent requests.
+
+**macOS:** No docs yet. I’m a student, my wallet is on life support, and a Mac is currently a legendary creature I read about in books. So the macOS setup will stay mysterious for now. 🍎💸🎓
+
+
+
 
 ## 🧠 Why modular?
 
