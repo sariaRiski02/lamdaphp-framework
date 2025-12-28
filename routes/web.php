@@ -24,5 +24,7 @@ Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'u
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
 
+// reactive component
 Route::get('/events', [EventController::class, 'stream']);
-Route::get('/_news', [GuestController::class, '_news']);
+Route::get("/_news", [GuestController::class, '_news']);
+Route::get("/_landing-news", [DashboardViewController::class, '_news_landing']);

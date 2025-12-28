@@ -59,7 +59,7 @@ class DashLogicController extends Controller
             return $this->redirect('/dashboard/add-news');
         }
 
-        EventDispatcher::dispatch('news_update', 
+        EventDispatcher::dispatch('update', 
         [
             'message' => 'News updated'
         ]);
@@ -128,7 +128,7 @@ class DashLogicController extends Controller
         }
 
 
-        EventDispatcher::dispatch('news_update', 
+        EventDispatcher::dispatch('update', 
         [
             'message' => 'News updated'
         ]);
@@ -156,7 +156,7 @@ class DashLogicController extends Controller
             return $this->redirect('/dashboard/list-news');
         }
 
-        EventDispatcher::dispatch('news_update', 
+        EventDispatcher::dispatch('update', 
         [
             'message' => 'News updated'
         ]);

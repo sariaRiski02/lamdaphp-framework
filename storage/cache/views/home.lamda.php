@@ -75,7 +75,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 mt-16 py-8">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <p>&copy; 2025 Berita Online. All rights reserved.</p>
@@ -85,7 +85,7 @@
     <script>
         // **Buat SSE connection ke server**
         const eventSource = new EventSource('/events');
-        eventSource.addEventListener('news_update', function(event){
+        eventSource.addEventListener('update', function(event){
             fetch('/_news')
                 .then(res=> res.json())
                 .then(data=>{

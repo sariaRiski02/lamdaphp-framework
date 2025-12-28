@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\News;
 use Lamda\Core\Http\Controller;
+use Lamda\Core\Http\Response;
 
 class DashboardViewController extends Controller
 {
@@ -89,6 +90,26 @@ class DashboardViewController extends Controller
         $category = Category::where('slug', value:$slug)[0];
         
         return $this->view('dashboard.updateCategory',compact('category'));
+    }
+
+    // reactive method
+    public function _news_landing(){
+         $news = News::get(
+            "SELECT 
+                n.*,
+                c.name AS category_name
+            FROM 
+                news AS n
+            INNER JOIN 
+                categories AS c ON n.category_id = c.id LIMIT 5
+            "
+        );
+        
+        $view = $this->view('component._landing-list-news', compact('news'));
+
+        return Response::json([
+            'data' => $view
+        ]);
     }
 
 }

@@ -163,7 +163,7 @@
                                     <th class="px-6 py-3 text-left font-semibold text-gray-700">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-bind="news">
                                 @foreach($news as $item)
                                     <tr class="border-b hover:bg-gray-50">
                                         <td class="px-6 py-4">-</td>
@@ -199,5 +199,26 @@
         </main>
 
     </div>
+
+    <script>
+        const eventSource = new EventSource('/events');
+        eventSource.addEventListener('update', function(event){
+            fetch('/_landing-news')
+            .then(res=>res.json())
+            .then(data=>{
+                document.querySelector('[data-bind="news"]').innerHTML = data.data;
+            }).catch(err=>console.error(err));
+        });
+
+        eventSource.onopen = function(){
+            console.log('Connection to server opened');
+        }
+        eventSource.onerror = function(err){
+            console.error('EventSource failed:', err);
+        }
+
+
+        
+    </script>
 </body>
 </html>

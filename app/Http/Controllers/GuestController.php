@@ -58,7 +58,6 @@ class GuestController extends Controller
                     FROM news AS n
                     INNER JOIN categories AS c ON n.category_id = c.id ORDER BY id DESC
                 ");
-
         $allNews = $this->view('component._list-news', compact('allNews'));
         
         return Response::json([
