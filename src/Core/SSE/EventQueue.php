@@ -4,7 +4,7 @@ namespace Lamda\Core\SSE;
 
 class EventQueue
 {
-    protected static string $file = __DIR__ . '/../../storage/events.queue';
+    protected static string $file = __DIR__ . '/../../../storage/events.queue';
 
     public static function push(array $event): void
     {

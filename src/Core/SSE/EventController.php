@@ -35,21 +35,23 @@ class EventController{
         echo ":" . str_repeat(" ", 2048) . "\n\n";
         flush();
 
+         $lastEventId = $_SERVER['HTTP_LAST_EVENT_ID'] ?? 0;
+
         while(true){
 
             if(connection_aborted()){
                 break;
             }
+            $event = end(EventQueue::pull());
+            file_put_contents('/tmp/debug.log', print_r($event, true));
 
-            $events = EventQueue::pull();
-            
             echo ": keep-alive\n\n";
 
-            if(!empty($events)){
-                foreach($events as $event){
-                    echo "event: {$event['type']}\n";
-                    echo 'data: ' . json_encode($event['payload']) . "\n\n";
-                }
+            if(!empty($event) && $event['id_event_time'] != $lastEventId){
+                echo "event: {$event['type']}\n";
+                echo "data: " . json_encode($event['payload']) . "\n";
+                echo "id: {$event['id_event_time']} - $lastEventId\n\n";
+                $lastEventId = $event['id_event_time'];   
             }
 
             if(connection_aborted()){
@@ -58,6 +60,7 @@ class EventController{
             
             
             @flush();
+
             usleep(500000); // 0.5 detik
         }
     

@@ -89,11 +89,13 @@
         // **Buat SSE connection ke server**
         const eventSource = new EventSource('/events');
         eventSource.addEventListener('update', function(event){
+           console.log(event.lastEventId)
             fetch('/_news')
                 .then(res=> res.json())
                 .then(data=>{
+                    
                     document.querySelector('[data-bind="news"]').innerHTML = data.data;
-                    console.log('data updated');
+                    
                 }).catch(err=>console.error(err));
         });
         eventSource.onopen = function(){
