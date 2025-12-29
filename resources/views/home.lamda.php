@@ -93,11 +93,15 @@
                 .then(res=> res.json())
                 .then(data=>{
                     document.querySelector('[data-bind="news"]').innerHTML = data.data;
+                    console.log('data updated');
                 }).catch(err=>console.error(err));
         });
         eventSource.onopen = function(){
             console.log('Connection to server opened.');
         };
+        eventSource.onclose = function(){
+            console.log('Connection to server closed');
+        }
         eventSource.onerror = function(err){
             console.error('EventSource failed:', err);
         };

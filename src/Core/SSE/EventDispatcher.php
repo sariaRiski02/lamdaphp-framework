@@ -7,7 +7,7 @@ class EventDispatcher{
         EventQueue::push([
             'type' => $type,
             'payload' => $payload,
-            'time' => time()
+            'id_event_time' => time()
         ]);
     }
 }

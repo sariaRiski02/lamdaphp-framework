@@ -25,7 +25,6 @@ class EventQueue
         }
         
         $lines = file(self::$file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        file_put_contents(self::$file, '');
         
         return array_filter(
             array_map(fn($l) => json_decode(trim($l), true), $lines),
