@@ -42,7 +42,7 @@ Think of it like building your own small Laravel, but without the 900+ internal 
 - Build something small but extensible  
 - Understand routing, dispatching, request lifecycle  
 - Explore facade pattern & modular separation  
-- Make TA supervisor think I’m smart 😎  
+- Make my research advisor think I’m smart 😎  
 - Have fun  
 
 ---
