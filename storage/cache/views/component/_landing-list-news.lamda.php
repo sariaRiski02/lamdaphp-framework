@@ -12,7 +12,9 @@
         <td class="px-6 py-4"><?=  htmlspecialchars($item['created_at'], ENT_QUOTES, 'UTF-8') ?></td>
         <td class="px-6 py-4 flex gap-2">
             <a href="/dashboard/news/update/<?=  htmlspecialchars($item['slug'], ENT_QUOTES, 'UTF-8') ?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
+            <form action="/dashboard/news/delete/<?=  htmlspecialchars($item['slug'], ENT_QUOTES, 'UTF-8') ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this news?');">
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Delete</button>
+        </form>
         </td>
     </tr>    
 <?php endforeach; ?>

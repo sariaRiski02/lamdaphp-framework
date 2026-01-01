@@ -43,7 +43,6 @@ class EventController{
                 break;
             }
             $event = end(EventQueue::pull());
-            file_put_contents('/tmp/debug.log', print_r($event, true));
 
             echo ": keep-alive\n\n";
 

@@ -21,7 +21,7 @@ abstract class Controller
         return static::$viewEngine;
     }
 
-    protected function view(string $view, array $rawsData = []):string{
+    protected function view(string $view, array $rawsData = []){
 
         return $this->getViewEngine()->render($view, $rawsData);
     }

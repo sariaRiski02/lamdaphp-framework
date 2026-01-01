@@ -31,6 +31,18 @@ class GuestController extends Controller
                 INNER JOIN categories AS c ON n.category_id = c.id ORDER BY id DESC
             ");
         }
+
+        $view = $this->view('component._list-news', compact('allNews'));
+
+        $allData = [
+            'allNews' => $view
+        ];
+        if(Request::header('realtime')){   
+            return Response::json([
+                'data' => $allData
+            ]);
+        }
+
         return $this->view('home',compact('allNews'));
     }
 
@@ -49,20 +61,6 @@ class GuestController extends Controller
     }
 
 
-    public function _news(){
-        
-        $allNews = News::get("
-                SELECT
-                    n.*,
-                    c.name AS category_name
-                    FROM news AS n
-                    INNER JOIN categories AS c ON n.category_id = c.id ORDER BY id DESC
-                ");
-        $allNews = $this->view('component._list-news', compact('allNews'));
-        
-        return Response::json([
-            'data' => $allNews
-        ]);
-    }
+   
     
 }

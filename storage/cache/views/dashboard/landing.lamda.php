@@ -47,7 +47,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Total Berita</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?=  htmlspecialchars($totalNews, ENT_QUOTES, 'UTF-8') ?></p>
+                                    <p data-bind="totalNews" class="text-3xl font-bold text-gray-800 mt-2"><?=  htmlspecialchars($totalNews, ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                                 <div class="bg-blue-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -63,7 +63,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Total Kategori</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?=  htmlspecialchars($totalCategory, ENT_QUOTES, 'UTF-8') ?></p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2" data-bind="totalCategory"><?=  htmlspecialchars($totalCategory, ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                                 <div class="bg-green-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -78,7 +78,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Terpublikasi</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?=  htmlspecialchars($published, ENT_QUOTES, 'UTF-8') ?></p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2" data-bind="published"><?=  htmlspecialchars($published, ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                                 <div class="bg-yellow-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
@@ -93,7 +93,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-gray-600 text-sm font-semibold">Dalam Draft</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?=  htmlspecialchars($draft, ENT_QUOTES, 'UTF-8') ?></p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2" data-bind="draft"><?=  htmlspecialchars($draft, ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                                 <div class="bg-purple-100 p-4 rounded-full">
                                     <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
@@ -175,10 +175,14 @@
                                             <span class="<?=  htmlspecialchars($item['status'] == 'draft' ? 'bg-red-100 text-black-100' : 'bg-blue-100 text-blue-800', ENT_QUOTES, 'UTF-8') ?>  px-3 py-1 rounded">
                                                 <?=  htmlspecialchars($item['status'], ENT_QUOTES, 'UTF-8') ?>
                                             </span></td>
+                                        
                                         <td class="px-6 py-4"><?=  htmlspecialchars($item['created_at'], ENT_QUOTES, 'UTF-8') ?></td>
+
                                         <td class="px-6 py-4 flex gap-2">
                                             <a href="/dashboard/news/update/<?=  htmlspecialchars($item['slug'], ENT_QUOTES, 'UTF-8') ?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">Edit</a>
-                                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Hapus</button>
+                                            <form action="/dashboard/news/delete/<?=  htmlspecialchars($item['slug'], ENT_QUOTES, 'UTF-8') ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this news?');">
+                                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>    
                                 <?php endforeach; ?>
@@ -191,34 +195,53 @@
                         </a>
                     </div>
                 </section>
-
-                
-
             </div>
         </main>
 
     </div>
 
     <script>
-        const eventSource = new EventSource('/events');
-        eventSource.addEventListener('update', function(event){
-            fetch('/_landing-news')
-            .then(res=>res.json())
-            .then(data=>{
-                document.querySelector('[data-bind="news"]').innerHTML = data.data;
-                console.log('data updated');
-            }).catch(err=>console.error(err));
+        
+        const element = document.querySelectorAll('[data-bind]');
+        let dataBind = [];
+        element.forEach(el => {
+            dataBind.push(el.dataset.bind);
         });
-
+        const eventSource = new EventSource('/events');
         eventSource.onopen = function(){
             console.log('Connection to server opened');
         }
+        eventSource.addEventListener('update', function(event){
+            fetch(window.location.href,
+                {
+                    method: 'GET',
+                    headers: {
+                        'realtime' : true,
+                        'X-Data': JSON.stringify({
+                            url: window.location.href,
+                            data: dataBind
+                        })
+                    }
+                }
+            )
+            .then(res=>res.json())
+            .then(data=>{
+                const receivedData = data.data;
+                for(const key in receivedData){
+                    const bindEl = document.querySelector(`[data-bind="${key}"]`);
+                    if(bindEl){
+                        bindEl.innerHTML = receivedData[key];
+                    }
+                }
+            }).catch(err=>console.error("error terjadi: " + err));
+        });
 
         eventSource.onclose = function(){
             console.log('Connection to server closed');
         }
 
         eventSource.onerror = function(err){
+            console.error(err);
             console.error('EventSource failed:', err);
         }
 

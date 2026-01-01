@@ -35,7 +35,7 @@
         </div>
 
         <!-- News Grid -->
-        <div data-bind="news" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div data-bind="allNews" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- News Card -->
              <?php foreach ($allNews as $news): ?>
@@ -83,28 +83,48 @@
     </footer>
 
     <script>
-        // **Buat SSE connection ke server**
-        const eventSource = new EventSource('/events');
-        eventSource.addEventListener('update', function(event){
-           console.log(event.lastEventId)
-            fetch('/_news')
-                .then(res=> res.json())
-                .then(data=>{
-                    
-                    document.querySelector('[data-bind="news"]').innerHTML = data.data;
-                    
-                }).catch(err=>console.error(err));
+       const element = document.querySelectorAll('[data-bind]');
+        let dataBind = [];
+        element.forEach(el => {
+            dataBind.push(el.dataset.bind);
         });
+        const eventSource = new EventSource('/events');
         eventSource.onopen = function(){
-            console.log('Connection to server opened.');
-        };
+            console.log('Connection to server opened');
+        }
+        eventSource.addEventListener('update', function(event){
+            fetch(window.location.href,
+                {
+                    method: 'GET',
+                    headers: {
+                        'realtime' : true,
+                        'X-Data': JSON.stringify({
+                            url: window.location.href,
+                            data: dataBind
+                        })
+                    }
+                }
+            )
+            .then(res=>res.json())
+            .then(data=>{
+                const receivedData = data.data;
+                for(const key in receivedData){
+                    const bindEl = document.querySelector(`[data-bind="${key}"]`);
+                    if(bindEl){
+                        bindEl.innerHTML = receivedData[key];
+                    }
+                }
+            }).catch(err=>console.error("error terjadi: " + err));
+        });
+
         eventSource.onclose = function(){
             console.log('Connection to server closed');
         }
-        eventSource.onerror = function(err){
-            console.error('EventSource failed:', err);
-        };
 
+        eventSource.onerror = function(err){
+            console.error(err);
+            console.error('EventSource failed:', err);
+        }
         
     </script>
 </body>

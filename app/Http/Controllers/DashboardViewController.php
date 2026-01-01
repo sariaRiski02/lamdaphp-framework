@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\News;
 use Lamda\Core\Http\Controller;
+use Lamda\Core\Http\Request;
 use Lamda\Core\Http\Response;
 
 class DashboardViewController extends Controller
@@ -37,6 +38,25 @@ class DashboardViewController extends Controller
             "
         );
 
+        $view = $this->view('component._landing-list-news', compact('news'));
+
+
+        $allData = [
+            'totalNews' => News::count(),
+            'totalCategory' => Category::count(),
+            'published' =>  $published,
+            'draft' => $draft,
+            'news' => $view
+        ];
+
+        if(Request::header('realtime')){
+            
+            return Response::json([
+                'data' => $allData
+            ]);
+        }
+
+
         return $this->view('dashboard.landing', compact(
             'totalNews',
             'totalCategory',
@@ -58,6 +78,18 @@ class DashboardViewController extends Controller
             "
         );
 
+        $view = $this->view('component._landing-list-news', compact('news'));
+
+        $allData = [
+            'news' => $view
+        ];
+
+        if(Request::header('realtime')){
+            return Response::json([
+                'data'=> $allData
+            ]);
+        }
+
         return $this->view('dashboard.listNews', compact('news'));
     }
 
@@ -69,7 +101,6 @@ class DashboardViewController extends Controller
     }
 
     public function updateNewsPage($slug){
-
 
         $news = News::where('slug', value:$slug)[0];
         $categories = Category::all();

@@ -47,5 +47,16 @@ class Request
         return $name == '' ? $_POST : $_POST["$name"];
     }
 
+    public static function header(string $name = ''): ?string{
+        
+        $headers = getallheaders();
+        
+        if($name){
+            return $headers[$name] ?? null;
+        }
+        return $headers;   
+
+    }
+
 
 }
