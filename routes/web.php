@@ -25,5 +25,5 @@ Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'u
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
 
-// reactive component
+// Realtime routes
 Route::get('/events', [EventController::class, 'stream']);

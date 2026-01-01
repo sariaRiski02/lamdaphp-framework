@@ -115,8 +115,8 @@ Because I want each part to be a “lego block”:
 * Routing → 1 module
 * HTTP → 1 module
 * View Engine → future module
-* WebSocket → (under cunstructor)
-* SSE → planned
+* WebSocket → (under cunstructor) maybe i dont want to impementation this feature hehe...
+* SSE → yee.. i was implemented this feature
 
 Makes the code super clean and fun to hack on.
 
