@@ -148,8 +148,12 @@ class LamdaViewEngine
             $content
         );
 
+        $content = preg_replace(
+            '/@realtime\s*$/m',
+            '<script src="app.js"></script>',
+            $content
+        );
         return $content;
-
     }
     
 }
