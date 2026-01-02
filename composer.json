@@ -1,7 +1,7 @@
 {
     "name": "lamdaphp/lamdaphp",
     "description": "LamdaPHP lightWeight modular PHP framework with rendering data realtime.",
-    "type": "library",
+    "type": "project",
     "license": "MIT",
     "keywords": ["framework", "php framework", "lamdaphp", "lightweight php framework", "modular php framework", "realtime php framework"],
     "homepage": "https://github.com/sariaRiski02/lamdaphp-framework",
