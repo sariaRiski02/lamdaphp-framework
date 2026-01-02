@@ -103,4 +103,9 @@ class Response
         $headers['Content-Type'] = 'application/json';
         return self::make($data, $status, $headers);
     }
+
+    public static function redirect(string $url, int $status = 302, array $headers = []): self{
+        $headers['Location'] = $url;
+        return self::make('', $status, $headers);
+    }
 }
