@@ -7,11 +7,6 @@
     "homepage": "https://github.com/sariaRiski02/lamdaphp-framework",
 
     "bin" : ["lamda"],
-    "scripts": {
-        "post-root-package-install": [
-            "php post-install.php"
-        ]
-    },
     "autoload": {
         "psr-4": {
             "Lamda\\": "src/",
