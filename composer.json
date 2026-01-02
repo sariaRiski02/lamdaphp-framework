@@ -8,7 +8,9 @@
 
     "bin" : ["lamda"],
     "scripts": {
-        "post-install-cmd": "php -r \"require 'src/Core/Console/WelcomeCommand.php'; echo (new Lamda\\\\Core\\\\Console\\\\WelcomeCommand())->show();\""
+        "post-root-package-install": [
+            "php post-install.php"
+        ]
     },
     "autoload": {
         "psr-4": {

@@ -3,14 +3,14 @@
 
 namespace Lamda\Core\Console;
 
-use Lamda\Core\Console\WelcomeCommand;
+
 use Lamda\Core\Console\Commands\MakeModel;
 use Lamda\Core\Console\Commands\MakeController;
 use Lamda\Core\Console\Commands\MakeMiddleware;
 
 class Kernel{
     protected array $commands = [
-        'welcome' => WelcomeCommand::class,
+        
         'make:controller' => MakeController::class,
         'make:model' => MakeModel::class,
         'make:middleware' => MakeMiddleware::class
