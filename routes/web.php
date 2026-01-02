@@ -6,7 +6,6 @@ use Lamda\Core\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DashLogicController;
 use App\Http\Controllers\DashboardViewController;
-use App\Http\Controllers\RealtimeController;
 
 Route::get('/',[GuestController::class, 'home']);
 Route::get('/news/{slug}',[GuestController::class, 'news']);
@@ -23,7 +22,3 @@ Route::post('/dashboard/news/delete/{slug}', [DashLogicController::class, 'delet
 Route::post('/dashboard/category/store',[DashLogicController::class, 'storeCategory']);
 Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'updateCategory']);
 Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
-
-
-// Realtime routes
-Route::get('/events', [EventController::class, 'stream']);

@@ -27,5 +27,4 @@ class Route
     public static function post(string $uri, $action){
         return self::getRouter()->post($uri, $action);
     }
-
 }

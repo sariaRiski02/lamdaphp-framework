@@ -4,12 +4,14 @@
 namespace Lamda\Core\Console;
 
 use Lamda\Core\Console\Commands\MakeController;
+use Lamda\Core\Console\Commands\MakeMiddleware;
 use Lamda\Core\Console\Commands\MakeModel;
 
 class Kernel{
     protected array $commands = [
         'make:controller' => MakeController::class,
         'make:model' => MakeModel::class,
+        'make:middleware' => MakeMiddleware::class
     ];
 
     public function handle(array $argv): int{

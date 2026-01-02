@@ -2,6 +2,7 @@
 
 use Lamda\Core\Http\Request;
 use Lamda\Core\Routing\Router;
+use Lamda\Core\SSE\EventController;
 use Lamda\Core\Support\Facades\Route;
 
 
@@ -21,6 +22,9 @@ $router = new Router();
 
 // 3. Pasang router ke Facade
 Route::setRouter($router);
+
+// Realtime routes
+Route::get('/events', [EventController::class, 'stream']);
 
 // 4. Muat definisi route
 require __DIR__ . '/../routes/web.php';
