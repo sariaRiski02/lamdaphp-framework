@@ -9,6 +9,7 @@ use Lamda\Core\Console\Commands\MakeModel;
 
 class Kernel{
     protected array $commands = [
+        'welcome' => WelcomeCommand::class,
         'make:controller' => MakeController::class,
         'make:model' => MakeModel::class,
         'make:middleware' => MakeMiddleware::class

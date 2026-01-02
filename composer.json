@@ -7,6 +7,9 @@
     "homepage": "https://github.com/sariaRiski02/lamdaphp-framework",
 
     "bin" : ["lamda"],
+    "scripts": {
+        "post-install-cmd": "php -r \"require 'src/Core/Console/WelcomeCommand.php'; echo (new Lamda\\\\Core\\\\Console\\\\WelcomeCommand())->show();\""
+    },
     "autoload": {
         "psr-4": {
             "Lamda\\": "src/",
