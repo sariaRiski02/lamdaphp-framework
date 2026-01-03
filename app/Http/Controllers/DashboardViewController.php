@@ -10,6 +10,12 @@ use Lamda\Core\Http\Response;
 
 class DashboardViewController extends Controller
 {
+
+    public function __construct()
+    {
+        // $this->middleware($nameMiddleware);
+    }
+
     public function landingPage(){
         
         $news = News::all();
@@ -123,24 +129,7 @@ class DashboardViewController extends Controller
         return $this->view('dashboard.updateCategory',compact('category'));
     }
 
-    // reactive method
-    public function _news_landing(){
-         $news = News::get(
-            "SELECT 
-                n.*,
-                c.name AS category_name
-            FROM 
-                news AS n
-            INNER JOIN 
-                categories AS c ON n.category_id = c.id LIMIT 5
-            "
-        );
-        
-        $view = $this->view('component._landing-list-news', compact('news'));
 
-        return Response::json([
-            'data' => $view
-        ]);
-    }
+    
 
 }

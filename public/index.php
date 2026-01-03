@@ -7,11 +7,7 @@ use Lamda\Core\Support\Facades\Route;
 
 
 define('BASE_PATH', dirname(__DIR__));
-
-
 require __DIR__ . '/../vendor/autoload.php';
-
-
 
 
 // 1. Buat Request

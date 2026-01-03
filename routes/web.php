@@ -1,11 +1,20 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Lamda\Core\SSE\EventController;
 
 use Lamda\Core\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DashLogicController;
 use App\Http\Controllers\DashboardViewController;
+
+
+
+Route::get('/register', [AuthController::class, 'register']);
+Route::get('/register', [AuthController::class, 'store']);
+Route::get('/login', [AuthController::class, 'login']);
+
+
 
 Route::get('/',[GuestController::class, 'home']);
 Route::get('/news/{slug}',[GuestController::class, 'news']);

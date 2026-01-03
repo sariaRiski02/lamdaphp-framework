@@ -10,6 +10,7 @@ use Lamda\Core\Http\Response;
 
 class GuestController extends Controller
 {
+
     public function home(){
         $query = Request::query('news');
         if($query){
@@ -59,6 +60,9 @@ class GuestController extends Controller
         
         return $this->view('news', compact('news'));
     }
+
+
+
 
 
    
