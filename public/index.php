@@ -10,6 +10,8 @@ define('BASE_PATH', dirname(__DIR__));
 require __DIR__ . '/../vendor/autoload.php';
 
 
+session_start();
+
 // 1. Buat Request
 $request = Request::capture();
 

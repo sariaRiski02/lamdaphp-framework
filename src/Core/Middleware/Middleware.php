@@ -2,9 +2,11 @@
 
 namespace Lamda\Core\Middleware;
 
+use Lamda\Core\Http\Response;
 
 class Middleware {
-    public function name(array|string $name){
-        
+
+    public static function name(string $name){
+        return (new $name())->handle();
     }
 }

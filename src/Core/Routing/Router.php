@@ -39,9 +39,7 @@ class Router{
         $path = $request->path();
 
         [$route, $params] = $this->matchRoute($method, $path) ?? [null, []];
-
         
-
         if(!$route){
             $message = "404 URL: \"$path\" With Method \"$method\" Not Found";
             return Response::make($message, 404);

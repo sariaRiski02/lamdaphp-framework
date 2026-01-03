@@ -20,6 +20,7 @@
             </div>
             <button type="submit" class="w-full bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 rounded-lg transition">Masuk</button>
         </form>
+        <p class="text-center text-gray-600 mt-4">Belum punya akun? <a href="/register" class="text-purple-500 font-bold hover:text-purple-700">Daftar di sini</a></p>
     </div>
 </body>
 </html>

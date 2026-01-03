@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\News;
-use Lamda\Core\Http\Controller;
+use App\Models\Category;
 use Lamda\Core\Http\Request;
 use Lamda\Core\Http\Response;
+use Lamda\Core\Http\Controller;
+use Lamda\Core\Middleware\Middleware;
+use App\Http\Middlewares\AuthMiddleware;
 
 class DashboardViewController extends Controller
 {
 
     public function __construct()
     {
-        // $this->middleware($nameMiddleware);
+        return Middleware::name(AuthMiddleware::class);
     }
 
     public function landingPage(){
-        
+
         $news = News::all();
         $published = array_filter($news, function($item){
             return isset($item['status']) && $item['status'] === 'published';
