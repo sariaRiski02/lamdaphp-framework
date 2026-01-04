@@ -11,15 +11,16 @@ class AuthMiddleware{
         if(!$sessionUser){
             return Response::redirect('/login');
         }
-
+        
         $cookieLogin = isset($_COOKIE['Xusr']) ? $_COOKIE['Xusr'] : null;
-
+        
         if(!$cookieLogin){
             return Response::redirect('/login');
         }
 
-        if(!isset($_SESSION["user_$cookieLogin"]) || $_SESSION["user_$cookieLogin"] != $sessionUser){
+        if(!isset($_SESSION["user_$cookieLogin"]) || $_SESSION["user_$cookieLogin"] == session_id()){
             return Response::redirect('/login');
-        }
+        } 
+        
     }
 }

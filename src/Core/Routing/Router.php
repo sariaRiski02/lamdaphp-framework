@@ -5,30 +5,27 @@ namespace Lamda\Core\Routing;
 
 use Lamda\Core\Http\Request;
 use Lamda\Core\Http\Response;
+use Lamda\Core\Middleware\Middleware;
 use Lamda\Core\Routing\Route;
 
 class Router{
     /** @var Route[] */
     protected array $routes = [];
 
-    public function get(string $uri, $action): Route
+    public function get(string $uri, $action,$middleware = null): Route
     {
-
-        return $this->addRoute(['GET'], $uri, $action);
+        return $this->addRoute(['GET'], $uri, $action, $middleware);
     }
 
-    public function post(string $uri, $action): Route
+    public function post(string $uri, $action, $middleware = null): Route
     {
-
-        return $this->addRoute(['POST'], $uri, $action);
+        return $this->addRoute(['POST'], $uri, $action, $middleware);
     }
 
-    protected function addRoute(array $method, string $uri, $action): Route
+    protected function addRoute(array $method, string $uri, $action, $middleware = null): Route
     {
         $uri = '/' . ltrim($uri, '/'); // buat uri lebih konsisten
-        
-
-        $route = new Route($method, $uri, $action);
+        $route = new Route($method, $uri, $action, $middleware);
         $this->routes[] = $route;
         return $route;
     }
@@ -45,9 +42,12 @@ class Router{
             return Response::make($message, 404);
         }
 
-        $action = $route->getAction();
-        
+        if($route->getMiddleware() && Middleware::name($route->getMiddleware())){
 
+            return Middleware::name($route->getMiddleware());  
+        }
+
+        $action = $route->getAction();
         // closure /callable
         if(is_callable($action) && !is_array($action)){
             
@@ -93,15 +93,11 @@ class Router{
             return Response::make('Invalid route action', 500);
         }
 
-        // var_dump($result);
         // jika controller sudah mengembalikan response
         if($result instanceof Response){
             return $result;
         }
         // kalau cuma string / scalar -> bungkus jadi response
-        
-        
-
         
         return Response::make($result);
 

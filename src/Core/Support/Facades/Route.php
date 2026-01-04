@@ -2,6 +2,7 @@
 
 namespace Lamda\Core\Support\Facades;
 
+use Lamda\Core\Middleware\Middleware;
 use Lamda\Core\Routing\Router;
 use RuntimeException;
 
@@ -20,11 +21,12 @@ class Route
         return self::$router;
     }
 
-    public static function get(string $uri, $action){
-        return self::getRouter()->get($uri, $action);
+    public static function get(string $uri, $action, $middleware = null){
+       
+        return self::getRouter()->get($uri, $action, $middleware);
     }
 
-    public static function post(string $uri, $action){
-        return self::getRouter()->post($uri, $action);
+    public static function post(string $uri, $action, $middleware = null){
+        return self::getRouter()->post($uri, $action, $middleware);
     }
 }

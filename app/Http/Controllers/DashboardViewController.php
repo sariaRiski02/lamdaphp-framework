@@ -13,12 +13,8 @@ use App\Http\Middlewares\AuthMiddleware;
 class DashboardViewController extends Controller
 {
 
-    public function __construct()
-    {
-        return Middleware::name(AuthMiddleware::class);
-    }
-
     public function landingPage(){
+
 
         $news = News::all();
         $published = array_filter($news, function($item){
