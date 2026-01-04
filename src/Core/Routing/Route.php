@@ -20,7 +20,7 @@ class Route{
         return $this->methods;
     }
 
-
+    
     public function getPattern(): string{
         return $this->pattern;
     }
