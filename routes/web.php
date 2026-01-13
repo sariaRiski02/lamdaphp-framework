@@ -1,38 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatBoxController;
 use Lamda\Core\SSE\EventController;
-
 use Lamda\Core\Support\Facades\Route;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\DashLogicController;
-use App\Http\Controllers\DashboardViewController;
-use App\Http\Middlewares\AuthMiddleware;
-
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/register', [AuthController::class, 'store']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'authentication']);
 
 
+Route::get('/', [ChatBoxController::class, 'kontak']);
+Route::get('/chat/to/{to}', [ChatBoxController::class, 'chat']);
+Route::post('/chat/to/{to}', [ChatBoxController::class, 'send']);
 
-
-
-Route::get('/',[GuestController::class, 'home']);
-Route::get('/news/{slug}',[GuestController::class, 'news']);
-Route::get('/dashboard', [DashboardViewController::class, 'landingPage'], AuthMiddleware::class);
-Route::get('/dashboard/add-news', [DashboardViewController::class, 'addNewsPage']);
-Route::get('/dashboard/list-news', [DashboardViewController::class, 'listNewsPage']);
-Route::get('/dashboard/news/update/{slug}', [DashboardViewController::class, 'updateNewsPage']);
-Route::get('/dashboard/category', [DashboardViewController::class, 'setCategoryPage']);
-Route::get('/dashboard/category/update/{slug}', [DashboardViewController::class, 'updateCategoryPage']);
-
-Route::post('/dashboard/news/store',[DashLogicController::class, 'storeNews']);
-Route::post('/dashboard/news/update/{slug}', [DashLogicController::class, 'updateNews']);
-Route::post('/dashboard/news/delete/{slug}', [DashLogicController::class, 'deleteNews']);
-Route::post('/dashboard/category/store',[DashLogicController::class, 'storeCategory']);
-Route::post('/dashboard/category/update/{slug}', [DashLogicController::class, 'updateCategory']);
-Route::post('/dashboard/category/delete/{slug}', [DashLogicController::class, 'deleteCategory']);
 
 
 // Realtime routes

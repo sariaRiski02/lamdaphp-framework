@@ -44,7 +44,13 @@ class Request
     }
 
     public static function input($name = ''){
-        return $name == '' ? $_POST : $_POST["$name"];
+        if(self::header('Content-Type') !== 'application/json'){
+            return $name == '' ? $_POST : $_POST["$name"];
+        }
+        $request = json_decode(file_get_contents("php://input"),true);
+        return $name == '' ? $request : $request[$name];
+        
+
     }
 
     public static function header(string $name = ''): ?string{
