@@ -8,5 +8,5 @@ class Chat extends Model
 {
     protected static string $table = 'chat';
 
-    // 
+    //
 }

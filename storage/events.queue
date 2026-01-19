@@ -94,4 +94,12 @@
 {"type":"update","payload":{"message":"News updated"},"id_event_time":1767597005}
 {"type":"update","payload":{"message":"News updated"},"id_event_time":1767598292}
 {"type":"update","payload":{"message":"News updated"},"id_event_time":1767598477}
-{"type":"update","payload":{"message":"News updated"},"id_event_time":1767598496}
+
+{
+    "event":"update",
+    "data": {
+                "to" : "all / client selected",
+                "message":"News updated"
+            },
+    "id":1767598496
+}

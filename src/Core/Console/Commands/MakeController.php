@@ -13,7 +13,7 @@ class MakeController
         }
 
         $controllerName = $arguments[0];
-        
+
         // Validasi nama controller
         if (!preg_match('/^[A-Z][a-zA-Z0-9]*Controller$/', $controllerName)) {
             echo "Error: Controller name harus CamelCase dan diakhiri 'Controller'\n";
@@ -63,5 +63,5 @@ class $controllerName extends Controller
     //
 }
 PHP;
-}
+    }
 }

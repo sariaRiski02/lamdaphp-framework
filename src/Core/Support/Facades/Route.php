@@ -9,24 +9,27 @@ use RuntimeException;
 class Route
 {
     protected static ?Router $router = null;
-    public static function setRouter(Router $router):void
+    public static function setRouter(Router $router): void
     {
         self::$router = $router;
     }
 
-    protected static function getRouter(): Router{
-        if(!self::$router){
+    protected static function getRouter(): Router
+    {
+        if (!self::$router) {
             throw new RuntimeException('Router instance not set on Route facade');
         }
         return self::$router;
     }
 
-    public static function get(string $uri, $action, $middleware = null){
-       
+    public static function get(string $uri, $action, $middleware = null)
+    {
+
         return self::getRouter()->get($uri, $action, $middleware);
     }
 
-    public static function post(string $uri, $action, $middleware = null){
+    public static function post(string $uri, $action, $middleware = null)
+    {
         return self::getRouter()->post($uri, $action, $middleware);
     }
 }

@@ -21,5 +21,8 @@
     "require": {
         "php": ">=8"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^4.0"
+    }
 }

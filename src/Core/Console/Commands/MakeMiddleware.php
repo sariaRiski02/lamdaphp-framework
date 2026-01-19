@@ -13,7 +13,7 @@ class MakeMiddleware
         }
 
         $middlewareName = $arguments[0];
-        
+
         // Validasi nama Middleware
         if (!preg_match('/^[A-Z][a-zA-Z0-9]*$/', $middlewareName)) {
             echo "Error: Middleware name harus CamelCase\n";

@@ -13,7 +13,7 @@ class MakeModel
         }
 
         $modelName = $arguments[0];
-        
+
         // Validasi nama model
         if (!preg_match('/^[A-Z][a-zA-Z0-9]*$/', $modelName)) {
             echo "Error: Model name harus CamelCase\n";

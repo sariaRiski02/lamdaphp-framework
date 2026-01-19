@@ -11,17 +11,18 @@ abstract class Controller
 
     protected function getViewEngine(): LamdaViewEngine
     {
-        if(static::$viewEngine === null){
+        if (static::$viewEngine === null) {
             // BASE_PATH didefinisikan di public/index.php
             $viewPath = BASE_PATH . '/resources/views';
             $cachePath = BASE_PATH . '/storage/cache/views';
 
             static::$viewEngine = new LamdaViewEngine($viewPath, $cachePath);
-        } 
+        }
         return static::$viewEngine;
     }
 
-    protected function view(string $view, array $rawsData = []){
+    protected function view(string $view, array $rawsData = [])
+    {
 
         return $this->getViewEngine()->render($view, $rawsData);
     }
@@ -29,6 +30,4 @@ abstract class Controller
     {
         return Response::make('', $status, ['Location' => $url]);
     }
-
-    
 }

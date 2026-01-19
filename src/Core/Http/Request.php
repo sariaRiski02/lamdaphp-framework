@@ -15,7 +15,8 @@ class Request
         $this->path = '/' . ltrim($path, '/');
     }
 
-    public static function capture(): self{
+    public static function capture(): self
+    {
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
 
@@ -24,7 +25,8 @@ class Request
         return new self($method, $path);
     }
 
-    public function method(): string{
+    public function method(): string
+    {
         return $this->method;
     }
 
@@ -33,36 +35,33 @@ class Request
         return $this->path;
     }
 
-    public static function query($param = ''){        
-        if($param == ''){
+    public static function query($param = '')
+    {
+        if ($param == '') {
             return $_GET;
         }
-        if(!isset($_GET[$param])){
+        if (!isset($_GET[$param])) {
             return null;
-        }   
+        }
         return $_GET[$param];
     }
 
-    public static function input($name = ''){
-        if(self::header('Content-Type') !== 'application/json'){
+    public static function input($name = '')
+    {
+        if (self::header('Content-Type') !== 'application/json') {
             return $name == '' ? $_POST : $_POST["$name"];
         }
-        $request = json_decode(file_get_contents("php://input"),true);
+        $request = json_decode(file_get_contents("php://input"), true);
         return $name == '' ? $request : $request[$name];
-        
-
     }
 
-    public static function header(string $name = ''): ?string{
-        
+    public static function header(string $name = ''): ?string
+    {
+
         $headers = getallheaders();
-        
-        if($name){
+        if ($name) {
             return $headers[$name] ?? null;
         }
-        return $headers;   
-
+        return $headers;
     }
-
-
 }

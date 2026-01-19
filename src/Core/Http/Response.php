@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Lamda\Core\Http;
 
 class Response
@@ -21,33 +20,32 @@ class Response
     {
 
         // jika sudah instance Response, kembalikan saja
-        if($content instanceof self) {
-            return $content; 
+        if ($content instanceof self) {
+            return $content;
         }
 
         // jika callable (mis. route handler mengembalikan clousre) maka panggil
-        if(is_callable($content)){
+        if (is_callable($content)) {
             $content = call_user_func($content);
 
             // jika callable mengembalikan Response, kembalikan langsung
-            if($content instanceof self) {
-                return $content; 
-            }   
+            if ($content instanceof self) {
+                return $content;
+            }
         }
 
-        if($content === null){
+        if ($content === null) {
             $content = '';
         }
 
         // jika array atau object (tanpa __toString) -> JSON
-        if(is_array($content) || (is_object($content) && !method_exists($content, '__toString'))){
-
+        if (is_array($content) || (is_object($content) && !method_exists($content, '__toString'))) {
             // jangan timpa header jika sudah diset
-            if(!isset($headers['Content-Type'])){
+            if (!isset($headers['Content-Type'])) {
                 $headers['Content-Type'] = 'application/json';
             }
             $content = json_encode($content);
-        }else{
+        } else {
             $content = (string) $content;
         }
 
@@ -58,52 +56,59 @@ class Response
     public function send(): void
     {
         http_response_code($this->status);
-        foreach ($this->headers as $name => $value){
-            header($name. ': '. $value);
+        foreach ($this->headers as $name => $value) {
+            header($name . ': ' . $value);
         }
 
         echo $this->content;
     }
 
     /** ============================= Helper Function =============================== */
-    
+
     // Getter, Setter and Helper funcition
 
-    public function getContent(): int{
+    public function getContent(): int
+    {
         return $this->content;
     }
 
-    public function getHeader(): array{
+    public function getHeader(): array
+    {
         return $this->headers;
     }
 
 
     // Mutator (mutable)
-    public function setStatus(int $status_code):self{
+    public function setStatus(int $status_code): self
+    {
         $this->status = $status_code;
         return $this;
     }
 
 
-    public function setHeader(string $name, string $value):self{
+    public function setHeader(string $name, string $value): self
+    {
         $this->headers[$name] = $value;
         return $this;
     }
 
 
     // Imutable helper: kembalikan clone dengan header baru
-    public function withHeader(string $name, string $value):self {
+    public function withHeader(string $name, string $value): self
+    {
         $clone = clone $this;
         $clone->headers[$name] = $value;
         return $clone;
     }
 
-    public static function json($data, int $status = 200, array $headers = []): self{
+    public static function json($data, int $status = 200, array $headers = []): self
+    {
         $headers['Content-Type'] = 'application/json';
         return self::make($data, $status, $headers);
     }
 
-    public static function redirect(string $url, int $status = 302, array $headers = []): self{
+    public static function redirect(string $url, int $status = 302, array $headers = []): self
+    {
         $headers['Location'] = $url;
         return self::make('', $status, $headers);
     }

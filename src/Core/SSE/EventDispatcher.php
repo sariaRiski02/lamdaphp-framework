@@ -2,14 +2,15 @@
 
 namespace Lamda\Core\SSE;
 
-class EventDispatcher{
-    public static function dispatch(string $type, array $payload = []):void {
-        
+class EventDispatcher
+{
+    public static function dispatch(array $payload = []): void
+    {
+
         EventQueue::push([
-            'type' => $type,
+            'type' => 'update',
             'payload' => $payload,
             'id_event_time' => time()
         ]);
     }
 }
-
