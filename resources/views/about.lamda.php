@@ -14,7 +14,14 @@
                 <li><a href="/" class="hover:text-blue-200 transition duration-300">Home</a></li>
                 <li><a href="/about" class="hover:text-blue-200 transition duration-300">About</a></li>
                 <li><a href="/contact" class="hover:text-blue-200 transition duration-300">Contact</a></li>
-                <li><a href="/login" class="hover:text-blue-200 transition duration-300">Login</a></li>
+                 <li>
+                    @if(!$_SESSION['user'])
+                        <a href="/login" class="hover:text-blue-200 transition duration-300">Login</a>
+                    @else    
+                        <a href="/logout" class="hover:text-blue-200 transition duration-300">Logout</a>
+                    @endif
+            
+                </li>
             </ul>
         </nav>
     </header>

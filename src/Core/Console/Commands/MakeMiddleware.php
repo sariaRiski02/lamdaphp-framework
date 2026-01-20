@@ -22,7 +22,7 @@ class MakeMiddleware
         }
 
         $basePath = dirname(dirname(dirname(dirname(__DIR__))));
-        $middlewarePath = $basePath . '/app/Middleware/' . $middlewareName . '.php';
+        $middlewarePath = $basePath . '/app/Http/Middlewares/' . $middlewareName . '.php';
         $middlewareDir = dirname($middlewarePath);
 
         // Buat direktori jika belum ada
@@ -45,7 +45,7 @@ class MakeMiddleware
             return 1;
         }
 
-        echo "✓ Middleware '$middlewareName' berhasil dibuat di app/Middleware/$middlewareName.php\n";
+        echo "✓ Middleware '$middlewareName' berhasil dibuat di app/Http/Middlewares/$middlewareName.php\n";
         return 0;
     }
 
@@ -54,9 +54,7 @@ class MakeMiddleware
         return <<<PHP
 <?php
 
-namespace App\Models;
-
-use Lamda\Core\Model\Model;
+namespace App\Http\Middlewares;
 
 class $middlewareName
 {

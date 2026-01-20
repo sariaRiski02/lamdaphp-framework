@@ -70,7 +70,6 @@ class AuthController extends Controller
 
     }
 
-
     public function logout(){
         session_destroy();
         return Response::redirect('/login');
