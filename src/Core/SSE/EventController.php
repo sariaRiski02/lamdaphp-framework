@@ -52,7 +52,7 @@ class EventController
             if (!empty($event) && $event['id_event_time'] != $lastEventId) {
                 echo "event: {$event['type']}\n";
                 echo "data: " . json_encode($event['payload']) . "\n";
-                echo "id: {$event['id_event_time']} - $lastEventId\n\n";
+                echo "id: {$event['id_event_time']}-$lastEventId\n\n";
                 $lastEventId = $event['id_event_time'];
             }
 

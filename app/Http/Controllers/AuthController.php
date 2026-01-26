@@ -65,9 +65,8 @@ class AuthController extends Controller
             'email' => $user['email'],
             'token' => bin2hex(random_bytes(10))
         ];
-        
+        setcookie('Client-Token',$_SESSION['user']['token']);
         return Response::redirect('/');
-
     }
 
     public function logout(){

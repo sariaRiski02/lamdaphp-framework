@@ -2,9 +2,11 @@
 
 namespace Lamda\Core\SSE;
 
+use Lamda\Core\Support\Facades\Log;
+
 class EventQueue
 {
-    protected static string $file =  BASE_PATH . 'storage/events.queue';
+    protected static string $file =  BASE_PATH . '/storage/events.queue';
 
     public static function push(array $event): void
     {

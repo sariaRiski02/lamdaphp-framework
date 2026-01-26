@@ -9,9 +9,7 @@ eventSource.onopen = function(){
     console.log('Connection to server opened');
 }
 eventSource.addEventListener('update', function(event){
-
-    
-    
+    console.log(event.lastEventId);
     fetch(window.location.href,
         {
             method: 'GET',

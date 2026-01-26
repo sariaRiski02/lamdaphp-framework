@@ -60,7 +60,7 @@ class $middlewareName
 {
     public function handle(){
         
-        // buat logic anda disini untuk middleware atau melidungi route
+        // buat logic anda disini untuk middleware untuk melindungi route
         
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Middlewares;
 
+use Lamda\Core\Http\Request;
 use Lamda\Core\Http\Response;
-use Lamda\Core\Model\Model;
+
 
 class AuthMiddleware
 {
@@ -12,6 +13,6 @@ class AuthMiddleware
         if(!isset($_SESSION['user'])){
             return Response::redirect('/login');
         }
-        
+
     }
 }
