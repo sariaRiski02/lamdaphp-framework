@@ -5,11 +5,7 @@ use Lamda\Core\SSE\EventController;
 use Lamda\Core\Support\Facades\Route;
 
 
-
-// Register Web Routes Here
-
-
-
+// Other web routes can be defined here
 
 
 // Realtime routes
