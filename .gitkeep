@@ -1,0 +1,3 @@
+touch resources/css/.gitkeep
+touch resources/images/.gitkeep
+touch resources/views/.gitkeep
