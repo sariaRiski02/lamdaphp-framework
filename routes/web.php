@@ -4,7 +4,6 @@
 use Lamda\Core\SSE\EventController;
 use Lamda\Core\Support\Facades\Route;
 
-
 // Other web routes can be defined here
 
 
