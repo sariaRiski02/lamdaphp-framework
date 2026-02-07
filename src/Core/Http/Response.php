@@ -112,4 +112,10 @@ class Response
         $headers['Location'] = $url;
         return self::make('', $status, $headers);
     }
+
+    public static function sendRealtime(array $data){
+        return self::json([
+            'data' => $data
+        ]);
+    }
 }
