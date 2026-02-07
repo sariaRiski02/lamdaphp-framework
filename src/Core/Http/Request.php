@@ -64,4 +64,8 @@ class Request
         }
         return $headers;
     }
+
+     public static function realtime(){
+        return self::header('realtime') ?? self::header('Realtime');
+    }
 }
