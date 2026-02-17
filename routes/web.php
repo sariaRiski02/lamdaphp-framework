@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\WelcomeController;
+
 use Lamda\Core\Http\Response;
 use Lamda\Core\SSE\EventController;
 use Lamda\Core\Support\Facades\Route;
