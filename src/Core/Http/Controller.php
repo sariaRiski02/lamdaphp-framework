@@ -21,9 +21,8 @@ abstract class Controller
         return static::$viewEngine;
     }
 
-    protected function view(string $view, array $rawsData = [])
+    public function view(string $view, array $rawsData = [])
     {
-
         return $this->getViewEngine()->render($view, $rawsData);
     }
     protected function redirect(string $url, int $status = 302): Response

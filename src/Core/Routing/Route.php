@@ -9,7 +9,10 @@ class Route
     protected $action; // string | arrray | callable
     protected $middleware = null;
 
-    public function __construct(array $methods, string $pattern, $action, $middleware)
+    public function __construct(array $methods, 
+                                string $pattern, 
+                                $action, 
+                                $middleware)
     {
         $this->methods = $methods;
         $this->pattern = $pattern;

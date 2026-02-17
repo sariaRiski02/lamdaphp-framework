@@ -2,11 +2,14 @@
 
 namespace Lamda\Core\Http;
 
+use Lamda\Core\View\LamdaViewEngine;
+
 class Response
 {
     protected string $content;
     protected int $status;
     protected array $headers = [];
+    protected static ?LamdaViewEngine $viewEngine = null;
 
 
     public function __construct(string $content = '', int $status = 200, array $headers = [])
@@ -59,8 +62,8 @@ class Response
         foreach ($this->headers as $name => $value) {
             header($name . ': ' . $value);
         }
-
         echo $this->content;
+
     }
 
     /** ============================= Helper Function =============================== */
@@ -118,4 +121,20 @@ class Response
             'data' => $data
         ]);
     }
+
+    public static function view(string $view, array $rawsData = []): self
+    {
+        if (static::$viewEngine === null) {
+            // BASE_PATH didefinisikan di public/index.php
+            $viewPath = BASE_PATH . '/resources/views';
+            $cachePath = BASE_PATH . '/storage/cache/views';
+
+            static::$viewEngine = new LamdaViewEngine($viewPath, $cachePath);
+        }
+        return self::make(static::$viewEngine->render($view, $rawsData));
+    }
+
+    
+    
+    
 }

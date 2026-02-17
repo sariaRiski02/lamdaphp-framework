@@ -5,11 +5,14 @@ use Lamda\Core\Routing\Router;
 use Lamda\Core\Support\Facades\Route;
 
 
+
 define('BASE_PATH', dirname(__DIR__));
 require __DIR__ . '/../vendor/autoload.php';
 
 
 session_start();
+
+
 
 // 1. Buat Request
 $request = Request::capture();

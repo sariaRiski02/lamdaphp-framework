@@ -2,7 +2,7 @@
 
 namespace Lamda\Core\Http;
 
-use Exception;
+
 
 class Request
 {
