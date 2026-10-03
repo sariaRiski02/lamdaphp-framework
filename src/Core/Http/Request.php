@@ -40,19 +40,16 @@ class Request
         if ($param == '') {
             return $_GET;
         }
-        if (!isset($_GET[$param])) {
-            return null;
-        }
-        return $_GET[$param];
+        return $_GET[$param] ?? null;
     }
 
     public static function input($name = '')
     {
         if (self::header('Content-Type') !== 'application/json') {
-            return $name == '' ? $_POST : $_POST["$name"];
+            return $name == '' ? $_POST : ($_POST[$name] ?? null);
         }
-        $request = json_decode(file_get_contents("php://input"), true);
-        return $name == '' ? $request : $request[$name];
+        $request = json_decode(file_get_contents("php://input"), true) ?? [];
+        return $name == '' ? $request : ($request[$name] ?? null);
     }
 
     public static function header(string $name = ''): ?string

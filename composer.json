@@ -23,9 +23,11 @@
     },
     "minimum-stability": "stable",
     "require-dev": {
-        "squizlabs/php_codesniffer": "^4.0"
+        "squizlabs/php_codesniffer": "^4.0",
+        "phpunit/phpunit": "^10"
     },
     "scripts": {
+        "test": "phpunit",
         "post-create-project-cmd": [
         "mkdir -p resources/css resources/images resources/views"
         ]

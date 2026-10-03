@@ -67,9 +67,14 @@ class Response
 
     // Getter, Setter and Helper funcition
 
-    public function getContent(): int
+    public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function getStatus(): int
+    {
+        return $this->status;
     }
 
     public function getHeader(): array

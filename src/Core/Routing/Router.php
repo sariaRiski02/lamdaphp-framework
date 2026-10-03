@@ -46,49 +46,7 @@ class Router
             return Middleware::name($route->getMiddleware());
         }
 
-        $action = $route->getAction();
-        // closure /callable
-        if (is_callable($action) && !is_array($action)) {
-            $result = call_user_func_array($action, $params);
-
-
-        // string "Controller@Method"
-        } elseif (is_string($action)) {
-            [$controllerName, $methodName] = explode('@', $action);
-
-            $controllerClass = 'App\\Http\\Controllers\\' . $controllerName;
-
-
-
-            if (!class_exists($controllerClass)) {
-                return Response::make('controller: ' . $controllerClass . ' not Found', 500);
-            }
-
-            $controller = new $controllerClass();
-
-            if (!method_exists($controller, $methodName)) {
-                return Response::make("Method $methodName in $controllerName not found", 500);
-            }
-
-            $result = call_user_func_array([$controller, $methodName], $params);
-        } elseif (is_array($action) && count($action) == 2) {
-            [$controllerClass, $methodName] = $action;
-
-
-            if (!class_exists($controllerClass)) {
-                return Response::make('controller not Found', 500);
-            }
-
-            $controller = new $controllerClass();
-
-            if (!method_exists($controller, $methodName)) {
-                return Response::make('method not Found', 500);
-            }
-
-            $result = call_user_func_array([$controller,$methodName], $params);
-        } else {
-            return Response::make('Invalid route action', 500);
-        }
+        $result = $this->invoke($route->getAction(), $params);
 
         // jika controller sudah mengembalikan response
         if ($result instanceof Response) {
@@ -97,6 +55,37 @@ class Router
         // kalau cuma string / scalar -> bungkus jadi response
 
         return Response::make($result);
+    }
+
+    /**
+     * Run a route action; returns a 500 Response when it cannot be resolved.
+     */
+    protected function invoke($action, array $params)
+    {
+        if (is_callable($action) && !is_array($action)) {
+            return call_user_func_array($action, $params);
+        }
+
+        if (is_string($action)) {
+            [$controllerName, $methodName] = array_pad(explode('@', $action, 2), 2, '');
+            $controllerClass = 'App\\Http\\Controllers\\' . $controllerName;
+        } elseif (is_array($action) && count($action) == 2) {
+            [$controllerClass, $methodName] = $action;
+        } else {
+            return Response::make('Invalid route action', 500);
+        }
+
+        if (!class_exists($controllerClass)) {
+            return Response::make('controller: ' . $controllerClass . ' not Found', 500);
+        }
+
+        $controller = new $controllerClass();
+
+        if (!method_exists($controller, $methodName)) {
+            return Response::make("Method $methodName in $controllerClass not found", 500);
+        }
+
+        return call_user_func_array([$controller, $methodName], $params);
     }
 
     /**
