@@ -3,7 +3,6 @@
 namespace Lamda\Core\Database;
 
 use PDO;
-use PDOException;
 
 class Database
 {
@@ -28,14 +27,9 @@ class Database
             PDO::ATTR_EMULATE_PREPARES => false
         ];
 
-        $option = $cfg['options'] && is_array($cfg['options']) ? $cfg['options'] + $defaultOptions : $defaultOptions;
+        $option = isset($cfg['options']) && is_array($cfg['options']) ? $cfg['options'] + $defaultOptions : $defaultOptions;
 
-        try {
-            $this->pdo = new PDO($dsn, $cfg['username'] ?? null, $cfg['password'] ?? null, $option);
-        } catch (PDOException $e) {
-            // Jangan echo langsung di production - lempar exception
-            throw $e;
-        }
+        $this->pdo = new PDO($dsn, $cfg['username'] ?? null, $cfg['password'] ?? null, $option);
     }
 
     // Singleton helper
