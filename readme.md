@@ -28,7 +28,7 @@ LamdaPHP is a **micro-framework** with:
 - Laravel-like facade syntax  
 - Flexible handlers (closure, array callbacks, `"Controller@method"`)  
 - Built-in realtime support (SSE under construction)  
-- Zero external dependencies (pure PHP)
+- Zero runtime dependencies (pure PHP; PHPUnit is dev-only)
 
 It’s designed to be **understandable**, not **massive**.
 
@@ -107,6 +107,17 @@ PHP_CLI_SERVER_WORKERS=4 php -S localhost:8000 -t public
 
 
 
+
+## 🧪 Testing
+
+Tests use PHPUnit (dev dependency):
+
+```bash
+composer install
+composer test
+```
+
+---
 
 ## 🧠 Why modular?
 
